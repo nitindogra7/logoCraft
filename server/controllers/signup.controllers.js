@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 export default async function signup(req, res) {
   // Implementation for signup logic
   try {
@@ -26,12 +27,24 @@ export default async function signup(req, res) {
     if (userExist)
       return res.status(400).json({ message: "user already exists" });
     const user = await User.create({ fullName, email, password });
+    const accessToken = await generateAccessToken(user._id);
+    const refreshToken = await generateRefreshToken(user._id);
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
     res.status(201).json({
       message: "user created",
+      user: {
+        email: user.email,
+        fullName: user.fullName,
+        accessToken: accessToken,
+      },
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 }
-
-
