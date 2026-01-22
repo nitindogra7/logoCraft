@@ -64,7 +64,7 @@ export default function HeroSection() {
         </motion.h1>
         <motion.span variants={paragraphVariant} className="mt-4">
         <p className="font-inter text-xl text-center text-neutral-500">
-          Turn your ideas into vivid images with just a few{" "}
+          Turn your ideas into vivid logo and icons with just a few{" "}
           <br className="md:inline hidden" /> words.
         </p>
 
