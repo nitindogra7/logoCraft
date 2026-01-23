@@ -4,7 +4,7 @@ export default async function signup(req, res) {
   // Implementation for signup logic
   try {
     const { fullName, email, password } = req.body;
-    if (!fullName && !email && !password)
+    if (!fullName || !email || !password)
       return res.status(400).json({ message: "All fields are required" });
 
     if (
@@ -29,19 +29,22 @@ export default async function signup(req, res) {
     const user = await User.create({ fullName, email, password });
     const accessToken = await generateAccessToken(user._id);
     const refreshToken = await generateRefreshToken(user._id);
+    const isProd = process.env.NODE_ENV === "production";
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: isProd,
+      sameSite: isProd ? "None" : "Lax",
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+
     res.status(201).json({
       message: "user created",
       user: {
         email: user.email,
         fullName: user.fullName,
-        accessToken: accessToken,
       },
+      accessToken: accessToken,
     });
   } catch (error) {
     console.error(error);

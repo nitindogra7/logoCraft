@@ -1,20 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+import { signupApi } from "@/api/signupApi";
 import { MdAccountCircle } from "react-icons/md";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "@/contextApis/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [input, setInput] = useState({
     fullName: "",
     email: "",
     password: "",
   });
 
-  const a = 10 ;
   async function submitSignup(e) {
     e.preventDefault();
-    console.log(input);
+    await signupApi(input);
+    login();
+    navigate("/dashboard");
   }
   return (
     <div className="min-h-dvh w-dvw flex items-center justify-center bg-zinc-100 px-5">

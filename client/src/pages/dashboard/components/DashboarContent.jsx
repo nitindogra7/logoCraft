@@ -30,7 +30,7 @@ export default function DashboardContent() {
             <h1 className="text-2xl font-inter font-bold">Select category</h1>
             <span className="flex flex-wrap gap-5">
               {styles.map((item, idx) => {
-                return <Button className="w-fit bg-zinc-200 hover:bg-zinc-300 hover:scale-[1.02] text-black">{item}</Button>;
+                return <Button key={idx} className="w-fit bg-zinc-200 hover:bg-zinc-300 hover:scale-[1.02] text-black">{item}</Button>;
               })}
             </span>
           </span>

@@ -1,7 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { loginApi } from "@/api/loginApi";
+import Api from "@/api/api";
+import { AuthContext } from "@/contextApis/authContext";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+  const [input, setInput] = useState({ email: "", password: "" });
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const response = await loginApi(input);
+    Api.defaults.headers.common["Authorization"] = `Bearer ${response.accessToken}`;
+    await login()
+    navigate(`/dashboard`)
+    console.log(response.data);
+  }
   return (
     <div className="min-h-dvh w-dvw flex items-center justify-center bg-zinc-100 px-5">
       <motion.div
@@ -19,23 +36,26 @@ export default function Login() {
           <input
             type="email"
             placeholder="Email"
+            onChange={(e) => setInput({ ...input, email: e.target.value })}
             className="bg-zinc-100 p-3 rounded-lg outline-none focus:ring-2 ring-black"
           />
 
           <input
             type="password"
             placeholder="Password"
+            onChange={(e) => setInput({ ...input, password: e.target.value })}
             className="bg-zinc-100 p-3 rounded-lg outline-none focus:ring-2 ring-black"
           />
-
-          <Button className="mt-2">Login</Button>
+          <Button className="mt-2" onClick={handleSubmit}>
+            Login
+          </Button>
 
           <p className="text-sm text-center text-zinc-500">
             Don’t have an account?{" "}
-            <Link to ="/signup">
-            <span className="text-black font-semibold cursor-pointer">
-              Sign up
-            </span>
+            <Link to="/signup">
+              <span className="text-black font-semibold cursor-pointer">
+                Sign up
+              </span>
             </Link>
           </p>
         </div>
