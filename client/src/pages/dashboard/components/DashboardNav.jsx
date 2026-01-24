@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-export default function DashboardNav() {
+export default function DashboardNav({response}) {
   const { logout } = useContext(AuthContext);
   const data = [
     {
@@ -56,12 +56,12 @@ export default function DashboardNav() {
           <span className="flex items-center justify-center gap-1 bg-white py-2">
             <MdDiamond className="text-sky-500 text-2xl" />
             <span className="flex items-center">
-              <h1 className="font-bold text-xl">0</h1>
+              <h1 className="font-bold text-xl">{response?.userData.gems}</h1>
               <h1 className="font-bold">+</h1>
             </span>
           </span>
           <span className="flex items-center gap-1">
-            <Sheet classNa="md:hidden">
+            <Sheet className="md:hidden">
               <SheetTrigger asChild>
                 <span className="text-black md:hidden">
                   <Menu />

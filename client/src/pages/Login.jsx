@@ -14,10 +14,8 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await loginApi(input);
-    Api.defaults.headers.common["Authorization"] = `Bearer ${response.accessToken}`;
     await login()
     navigate(`/dashboard`)
-    console.log(response.data);
   }
   return (
     <div className="min-h-dvh w-dvw flex items-center justify-center bg-zinc-100 px-5">

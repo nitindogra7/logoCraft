@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 import { MdFavorite } from "react-icons/md";
-export default function DashboardContent() {
+export default function DashboardContent({ response }) {
   const styles = ["Minimal", "3D", "Gradient", "Flat", "Neon", "Glass"];
   return (
     <div className="w-dvw h-dvh md:flex ">
@@ -11,6 +11,10 @@ export default function DashboardContent() {
         transition={{ duration: 0.5 }}
         className="md:p-20 md:pt-25 p-5 pt-25 md:w-1/2 flex flex-col  md:h-fit"
       >
+        <div className="flex gap-5 font-inter font-medium">
+          <span>name : {response?.userData.fullName}</span>
+          <span>email : {response?.userData.email}</span>
+        </div>
         <span className="flex flex-col gap-12">
           <h1 className="text-2xl font-inter font-bold">
             Enter Prompt To Get Your Dream Icon
