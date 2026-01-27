@@ -1,15 +1,24 @@
 import jwt from "jsonwebtoken";
+
 export default function verifyUser(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer "))
-      return res.status(401).json({ message: "token not provided" });
+      return res.status(401).json({ message: "Token not provided" });
+
     const token = authHeader.split(" ")[1];
-    const verify = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    req.user = {id :verify.userId};
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    req.user = { id: decoded.userId };
     next();
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
-    console.log(error);
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({ message: "Access token expired" });
+    }
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+    console.error("Auth middleware error:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 }

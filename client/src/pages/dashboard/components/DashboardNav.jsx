@@ -82,12 +82,11 @@ export default function DashboardNav({response}) {
               </SheetContent>
             </Sheet>
           </span>
-          <form action="" onSubmit={logout}>
-          <button type="submit" className="md:inline-block hidden bg-sky-500 py-1 text-white px-4 rounded-sm">
+
+          <button onClick={logout} className="md:inline-block hidden bg-sky-500 py-1 text-white px-4 rounded-sm">
             
             logout
           </button>
-          </form>
         </span>
       </motion.div>
     </nav>

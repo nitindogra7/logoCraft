@@ -18,10 +18,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    refreshToken: { type: String },
     gems: {
-    type: Number,
-    default: 100,
-  }
+      type: Number,
+      default: 100,
+    },
   },
   { timestamps: true },
 );
@@ -33,8 +34,8 @@ userSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, saltRounds);
 });
 
-userSchema.methods.comparePassword = async function (password){
-    return await bcrypt.compare(password , this.password)
-}
+userSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
 
 export default mongoose.model("User", userSchema);

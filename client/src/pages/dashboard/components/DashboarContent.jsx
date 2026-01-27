@@ -1,67 +1,104 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 import { MdFavorite } from "react-icons/md";
-export default function DashboardContent({ response }) {
+import { useState } from "react";
+import { generateLogoApi } from "@/api/logoApi";
+
+export default function DashboardContent({ userData }) {
   const styles = ["Minimal", "3D", "Gradient", "Flat", "Neon", "Glass"];
+
+  const [prompt, setPrompt] = useState("");
+  const [selectedStyle, setSelectedStyle] = useState("Minimal");
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleGenerate = async () => {
+    if (!prompt.trim()) {
+      alert("Please enter a prompt");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const data = await generateLogoApi({ prompt, style: selectedStyle });
+      setImage(data.image);
+    } catch (err) {
+      alert("Failed to generate image");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="w-dvw h-dvh md:flex ">
+    <div className="w-dvw h-dvh md:flex">
+      {/* LEFT PANEL */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="md:p-20 md:pt-25 p-5 pt-25 md:w-1/2 flex flex-col  md:h-fit"
+        className="md:w-1/2 w-full md:p-20 p-6 flex flex-col gap-8"
       >
-        <div className="flex gap-5 font-inter font-medium">
-          <span>name : {response?.userData.fullName}</span>
-          <span>email : {response?.userData.email}</span>
+        {/* USER INFO */}
+        <div className="flex gap-6 font-medium">
+          <span>name: {userData?.fullName}</span>
+          <span>email: {userData?.email}</span>
         </div>
-        <span className="flex flex-col gap-12">
-          <h1 className="text-2xl font-inter font-bold">
-            Enter Prompt To Get Your Dream Icon
-          </h1>
-          <div className="relative w-full max-w-xl">
-            <textarea
-              placeholder="Enter your idea..."
-              className="bg-zinc-200 w-full h-40 rounded-lg p-5 pr-24 resize-none"
-            />
-            <button className="absolute bottom-3 right-3 bg-black text-white text-sm px-3 py-1.5 rounded-md flex items-center gap-1 hover:bg-neutral-800">
-              ✨ Enhance
-            </button>
+
+        {/* PROMPT */}
+        <h1 className="text-2xl font-bold">
+          Enter Prompt To Get Your Dream Icon
+        </h1>
+
+        <textarea
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="e.g. modern gym app logo with dumbbell"
+          className="bg-zinc-200 w-full h-40 rounded-lg p-5 resize-none"
+        />
+
+        {/* STYLE SELECT */}
+        <div>
+          <h2 className="text-xl font-bold mb-3">Select category</h2>
+          <div className="flex flex-wrap gap-3">
+            {styles.map((item) => (
+              <Button
+                key={item}
+                onClick={() => setSelectedStyle(item)}
+                className={`bg-zinc-200 text-black hover:bg-zinc-300 ${
+                  selectedStyle === item ? "ring-2 ring-black" : ""
+                }`}
+              >
+                {item}
+              </Button>
+            ))}
           </div>
-        </span>
-        <div className=" mt-5">
-          <span className="flex flex-col gap-5">
-            <h1 className="text-2xl font-inter font-bold">Select category</h1>
-            <span className="flex flex-wrap gap-5">
-              {styles.map((item, idx) => {
-                return <Button key={idx} className="w-fit bg-zinc-200 hover:bg-zinc-300 hover:scale-[1.02] text-black">{item}</Button>;
-              })}
-            </span>
-          </span>
         </div>
-        <Button className="md:p-5 p-6 md:text-smtext-lg mt-10">
-          Generate Icon
+
+        {/* GENERATE BUTTON */}
+        <Button onClick={handleGenerate} disabled={loading} className="w-fit px-6 py-4">
+          {loading ? "Generating..." : "Generate Icon"}
         </Button>
       </motion.div>
+
+      {/* RIGHT PANEL */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="md:max-w-[50%] w-full p-10 pt-25 px-5"
+        className="md:w-1/2 w-full p-8"
       >
-        <div className="w-full h-full bg-zinc-200 rounded-xl flex flex-col gap-5 items-center py-10 md:pt-15">
-          <div className="relative">
-            <img
-              className="w-[220px] h-[220px] object-cover rounded-xl"
-              src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGljb258ZW58MHx8MHx8fDA%3D"
-              alt=""
-            />
-            <button className="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow">
-              <MdFavorite className="text-red-500 text-lg" />
-            </button>
-          </div>
-
-          <Button>Regenerate</Button>
+        <div className="w-full h-full bg-zinc-200 rounded-xl flex flex-col items-center justify-center gap-6">
+          <img
+            src={image || "https://via.placeholder.com/220.png?text=Your+Icon"}
+            alt="Generated Logo"
+            className="w-[220px] h-[220px] rounded-xl object-cover"
+          />
+          {image && (
+            <Button onClick={handleGenerate}>
+              Regenerate
+            </Button>
+          )}
         </div>
       </motion.div>
     </div>

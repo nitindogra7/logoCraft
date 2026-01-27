@@ -37,7 +37,8 @@ export default async function signup(req, res) {
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-
+    user.refreshToken = refreshToken;
+    await user.save()
     res.status(201).json({
       message: "user created",
       user: {
