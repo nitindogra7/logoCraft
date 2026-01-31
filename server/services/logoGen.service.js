@@ -7,7 +7,6 @@ export const generateLogoImage = async (prompt) => {
     apiKey: process.env.GEMINI_API_KEY,
   });
 
-  // Craft the prompt to tell the model it's a logo generator
   const logoPrompt = `
 You are a professional app logo generator. 
 Create a high-quality, simple, and memorable logo suitable for an app icon.
