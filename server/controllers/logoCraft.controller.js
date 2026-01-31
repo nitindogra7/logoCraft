@@ -1,5 +1,4 @@
 import { generateLogoImage } from "../services/logoGen.service.js";
-
 export const generateLogo = async (req, res) => {
   const { prompt } = req.body;
 
@@ -8,13 +7,13 @@ export const generateLogo = async (req, res) => {
   try {
     const imageBuffer = await generateLogoImage(prompt);
 
-    const imageBase64 = Buffer.from(imageBuffer).toString("base64");
+    const imageBase64 = imageBuffer.toString("base64");
 
     res.status(200).json({
       image: `data:image/png;base64,${imageBase64}`,
     });
-    
   } catch (err) {
+    console.error("Error generating logo:", err);
     res.status(500).json({
       error: err.message,
     });
