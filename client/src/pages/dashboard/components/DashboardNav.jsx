@@ -1,7 +1,7 @@
 import { MdDiamond } from "react-icons/md";
 import { motion } from "motion/react";
 import { AuthContext } from "@/contextApis/authContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -15,8 +15,8 @@ export default function DashboardNav({response}) {
       to: "/",
     },
     {
-      name: "My Icons",
-      to: "/myicons",
+      name: "History",
+      to: "/history",
     },
     {
       name: "Favorites",
@@ -85,7 +85,6 @@ export default function DashboardNav({response}) {
           </span>
 
           <button onClick={logout} className="md:inline-block hidden bg-sky-500 py-1 text-white px-4 rounded-sm">
-            
             logout
           </button>
         </span>

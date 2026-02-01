@@ -1,4 +1,5 @@
 import Home from "./pages/home/Home";
+import History from "./pages/history/History";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import DashBoard from "./pages/dashboard/Dashboard";
@@ -17,6 +18,7 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+      <Route path="/history" element={<History />}/>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
     </Routes>
