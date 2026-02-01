@@ -44,14 +44,14 @@ export default function History() {
                 className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-3"
               >
                 <img
-                  src={img.image}   // ✅ FIXED
+                  src={img.image}  
                   alt={`logo-${index}`}
                   className="w-full h-48 object-cover rounded-lg"
                 />
 
                 <Button
                   className="w-full mt-3"
-                  onClick={() => downloadImage(img.image, index)} // ✅ FIXED
+                  onClick={() => downloadImage(img.image, index)}
                 >
                   Download
                 </Button>
