@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     refreshToken: { type: String },
-    gems: {
+    credits: {
       type: Number,
       default: 100,
     },

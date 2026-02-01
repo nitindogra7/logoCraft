@@ -11,13 +11,12 @@ export default function DashBoard() {
     }
     fetchData();
   }, []);
-
   if (!response) return <p>Loading...</p>;
   return (
     <>
       <div className="max-h-dvh overflow-x-hidden">
-        <DashboardNav response={response} />
-        <DashboardContent response={response} />
+        <DashboardNav response={response}  />
+        <DashboardContent response={response} setResponse={setResponse} />
       </div>
     </>
   );

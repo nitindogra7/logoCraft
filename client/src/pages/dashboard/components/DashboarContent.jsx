@@ -4,7 +4,7 @@ import { useState } from "react";
 import { generateLogoApi } from "@/api/logoApi";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function DashboardContent({ response }) {
+export default function DashboardContent({ setResponse }) {
   const styles = ["Minimal", "3D", "Gradient", "Flat", "Neon", "Glass"];
 
   const [prompt, setPrompt] = useState("");
@@ -17,20 +17,31 @@ export default function DashboardContent({ response }) {
     try {
       setLoading(true);
       setImage(null);
-      const finalPrompt = `
-App logo generator.
-Style: ${selectedStyle}
-Description: ${prompt}
-Minimal, clean, professional, app-icon ready.
-`;
-
+      const finalPrompt = `App logo generator. Style: ${selectedStyle} Description: ${prompt} clean, professional, logo ready.`;
       const data = await generateLogoApi({ prompt: finalPrompt });
+      setResponse((prev) => ({
+        ...prev,
+        userData: { ...prev.userData, credits: data.credits },
+      }));
       setImage(data.image);
     } catch (err) {
       alert("Failed to generate logo");
-      console.error(err);
+      console.error(err || err?.response?.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDownload = () => {
+    try {
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = "image.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -43,8 +54,6 @@ Minimal, clean, professional, app-icon ready.
           transition={{ duration: 0.4 }}
           className="bg-white rounded-2xl border border-zinc-200 shadow-sm p-6 md:p-8 flex flex-col gap-6"
         >
-          
-
           <div className="space-y-1">
             <h1 className="text-xl md:text-2xl font-semibold text-zinc-900">
               Create your logo
@@ -121,14 +130,22 @@ Minimal, clean, professional, app-icon ready.
                 <img
                   src={image}
                   alt="Generated Logo"
-                  className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] rounded-2xl object-cover border border-zinc-200 shadow-md"
+                  className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] object-cover border border-zinc-200 shadow-md"
                 />
-                <Button
-                  onClick={handleGenerate}
-                  className="px-5 py-2.5 rounded-lg bg-zinc-100 text-zinc-900 hover:bg-zinc-200 border border-zinc-200 transition text-sm"
-                >
-                  Regenerate
-                </Button>
+                <div>
+                  <Button
+                    onClick={handleGenerate}
+                    className="px-5 py-2.5 rounded-sm bg-zinc-700 text-white hover:bg-zinc-800 border border-zinc-200 transition text-sm"
+                  >
+                    Regenerate
+                  </Button>
+                  <Button
+                    onClick={handleDownload}
+                    className="px-5 ml-2 py-2.5 rounded-sm bg-zinc-700 text-white hover:bg-zinc-800 border border-zinc-200 transition text-sm"
+                  >
+                    Download
+                  </Button>
+                </div>
               </>
             )}
           </div>

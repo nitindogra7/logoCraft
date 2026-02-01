@@ -9,9 +9,9 @@ export const generateLogoImage = async (prompt) => {
 
   const logoPrompt = `
 You are a professional app logo generator. 
-Create a high-quality, simple, and memorable logo suitable for an app icon.
+Create a high-quality, simple, and memorable logo suitable for any platform.
 Logo description: ${prompt}
-Make it minimalistic, clean, and visually appealing.
+Make it clean, and visually appealing.
 `;
 
   const response = await ai.models.generateImages({
