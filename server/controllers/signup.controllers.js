@@ -3,8 +3,8 @@ import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 export default async function signup(req, res) {
   // Implementation for signup logic
   try {
-    const { fullName, email, password } = req.body;
-    if (!fullName || !email || !password)
+    const { fullName, email, password } = req.body || {};
+    if (!fullName || !email || !password )
       return res.status(400).json({ message: "All fields are required" });
 
     if (
