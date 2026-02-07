@@ -130,7 +130,7 @@ export default function DashboardContent({ setResponse }) {
                 <img
                   src={image}
                   alt="Generated Logo"
-                  className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] object-cover border border-zinc-200 shadow-md"
+                  className="w-[180px] rounded-lg h-[180px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] object-cover border border-zinc-200 shadow-md"
                 />
                 <div>
                   <Button

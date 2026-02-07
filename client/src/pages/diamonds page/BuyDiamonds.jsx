@@ -3,37 +3,42 @@ import { motion } from "motion/react";
 import DashboardNav from "../dashboard/components/DashboardNav";
 import { useContext } from "react";
 import { DashBoardContext } from "@/contextApis/dashBoardContext";
+import RazorpayButton from "@/components/RazorpayButton";
 
 export default function BuyDiamonds() {
   const { response } = useContext(DashBoardContext);
   const plans = [
     {
-      diamonds: 100,
+      diamonds: 200,
       price: "₹99",
+      amount: 99,
       popular: false,
     },
     {
-      diamonds: 500,
-      price: "₹399",
+      diamonds: 450,
+      price: "₹159",
+      amount: 159,
       popular: true,
     },
     {
-      diamonds: 1200,
-      price: "₹899",
+      diamonds: 1000,
+      price: "₹299",
+      amount: 299,
       popular: false,
     },
   ];
 
   return (
     <>
-      <DashboardNav response={response}/>
+      <DashboardNav response={response} />
       <div className="min-h-screen bg-sky-50 pt-28 px-6 md:px-20 font-inter">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold ">
-            Buy Diamonds
+            Buy <span className="text-sky-500"> Diamonds</span>
           </h1>
-          <p className="text-gray-500 mt-2">
-            Unlock more features with diamonds
+          <p className="text-gray-500 mt-2 capitalize text-center">
+            create stunning images with our plans that suits according to your
+            needs
           </p>
         </div>
 
@@ -52,7 +57,6 @@ export default function BuyDiamonds() {
                 </span>
               )}
 
-         
               <MdDiamond className="text-sky-500 text-5xl mb-4" />
 
               <h2 className="text-3xl font-bold text-gray-800">
@@ -63,10 +67,7 @@ export default function BuyDiamonds() {
               <p className="text-2xl font-semibold text-gray-800 mb-6">
                 {plan.price}
               </p>
-
-              <button className="w-full py-3 rounded-xl bg-sky-500 text-white font-semibold hover:bg-sky-600 transition">
-                Buy Now
-              </button>
+              <RazorpayButton amount={plan.amount} diamonds={plan.diamonds} />
             </motion.div>
           ))}
         </div>

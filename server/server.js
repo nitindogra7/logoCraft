@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import dashboardRoute from "./routes/dashboardRoute.js";
+import paymentRoute from "./routes/payment.route.js";
 import connectDb from "./config/db.js";
 
 dotenv.config();
@@ -14,10 +15,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({
-  origin: ["http://192.168.1.12:5173", "http://localhost:5173"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: ["http://192.168.1.12:5173", "http://localhost:5173"],
+    credentials: true,
+  }),
+);
 
 // Connect to DB
 connectDb();
@@ -30,7 +33,8 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/auth", authRoutes);
 app.use("/app", dashboardRoute);
+app.use("/app", paymentRoute);
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
