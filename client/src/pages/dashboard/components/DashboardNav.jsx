@@ -4,6 +4,7 @@ import { AuthContext } from "@/contextApis/authContext";
 import { useContext } from "react";
 import { Menu, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "../../../assets/logo.png";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function DashboardNav({ response }) {
@@ -24,11 +25,7 @@ export default function DashboardNav({ response }) {
         className="flex items-center justify-between shadow-md py-3 px-6 md:px-20"
       >
         {/* Logo */}
-        <img
-          src="https://framerusercontent.com/images/RYJ3bCIn0muya9k3TyVsZn6vK8.png"
-          className="w-10 h-10"
-          alt="logo"
-        />
+        <img src={logo} className="w-10 h-10" alt="logo" />
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-10">

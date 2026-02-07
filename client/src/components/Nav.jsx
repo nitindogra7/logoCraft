@@ -1,5 +1,6 @@
 import { Button } from "./ui/button.jsx";
-import {motion} from "motion/react"
+import { motion } from "motion/react";
+import logo from "../assets/logo.png";
 import { Moon, Menu } from "lucide-react";
 import {
   Sheet,
@@ -15,14 +16,11 @@ export default function Nav() {
   return (
     <nav className="w-full flex justify-center md:py-5 py-2 font-inter ">
       <motion.div
-      initial = {{y : -100 , filter : 'blur(10px)'}}
-      animate = {{y : 0 , filter : 'blur(0px)' , transition : {duration : 0.5 } }}
-      className="flex gap-30 shadow-xl py-3 px-7 md:w-auto w-[100vw] md:px-20 justify-between md:rounded-full font-inter items-center ">
-        <img
-          src="https://framerusercontent.com/images/RYJ3bCIn0muya9k3TyVsZn6vK8.png"
-          className="w-10 h-10"
-          alt=""
-        />
+        initial={{ y: -100, filter: "blur(10px)" }}
+        animate={{ y: 0, filter: "blur(0px)", transition: { duration: 0.5 } }}
+        className="flex gap-30 shadow-xl py-3 px-7 md:w-auto w-[100vw] md:px-20 justify-between md:rounded-full font-inter items-center "
+      >
+        <img src={logo} className="w-10 h-10" alt="logo" />
         <span className="md:flex items-center gap-5 hidden">
           {["Home", "About", "Pricing", "Features"].map((item, idx) => {
             return (
@@ -38,7 +36,6 @@ export default function Nav() {
         </span>
         <span className="flex items-center gap-2">
           <Button className="md:inline hidden">Get Strarted</Button>
-
 
           {/*mobile view */}
           <Sheet classNa="md:hidden">
