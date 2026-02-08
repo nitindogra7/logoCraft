@@ -1,5 +1,6 @@
-import Nav from "../../components/Nav.jsx"
+import Nav from "../../components/Nav.jsx";
 import HeroSection from "../../components/HeroSection.jsx";
+import FeatureSection from "./FeatureSection.jsx";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       </header>
       <main>
         <HeroSection />
+        <FeatureSection />
       </main>
     </>
   );

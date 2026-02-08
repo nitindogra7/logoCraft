@@ -14,7 +14,7 @@ export default function DashboardNav({ response }) {
     { name: "Home", to: "/" },
     { name: "History", to: "/history" },
     { name: "Favorites", to: "/favorites" },
-    { name: "Settings", to: "/settings" },
+  { name: "Dashboard", to: "/dashboard" },
   ];
 
   return (

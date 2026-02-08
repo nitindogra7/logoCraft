@@ -9,6 +9,7 @@
   --font-inter: "Inter", sans-serif;
   --font-instrument-serif: "Instrument Serif", serif;
   --color-blue : #5fa9ee;
+  --color-gray :#111111
 }
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
