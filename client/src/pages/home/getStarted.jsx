@@ -10,7 +10,7 @@ export default function GetStarted() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
       viewport={{ once: true }}
-      className="md:flex py-20 md:px-20 px-5"
+      className="md:flex py-20 md:px-20 px-5 "
     >
       <div className="flex flex-col gap-7 md:w-1/2 font-inter md:pt-15">
         <HighlightButton text={"Get Started"} />
