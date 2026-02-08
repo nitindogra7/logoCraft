@@ -1,6 +1,7 @@
 import Nav from "../../components/Nav.jsx";
 import HeroSection from "../../components/HeroSection.jsx";
 import FeatureSection from "./FeatureSection.jsx";
+import GetStarted from "./getStarted.jsx";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <FeatureSection />
+        <GetStarted />
       </main>
     </>
   );

@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { easeInOut, motion } from "motion/react";
 
 export default function HeroSection() {
-  const text = "Generate stunning AI Images"
+  const text = "Generate stunning AI Logos"
   const parentVariants = {
     hidden: {},
     show: {
@@ -40,7 +40,7 @@ export default function HeroSection() {
     }
   }
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center bg-white">
       <motion.div
       initial = "hidden"
       animate = "show"
