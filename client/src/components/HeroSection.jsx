@@ -35,17 +35,17 @@ export default function HeroSection() {
     show : {
       opacity : 1 , y : 0 ,filter : "blur(0px)" , 
       transition : {
-        delay : text.split(" ").length * 0.35
+        delay : text.split(" ").length * 0.3
       }
     }
   }
   return (
-    <section className="flex justify-center bg-white">
+    <section className="flex justify-center bg-white overflow-hidden">
       <motion.div
       initial = "hidden"
       animate = "show"
       variants={parentVariants}
-      className="py-35 md:px-20 px-5 max-w-3xl flex flex-col gap-3">
+      className="py-20 md:py-30 md:px-20 px-5 max-w-3xl flex flex-col gap-3">
         <motion.h1
           initial="hidden"
           animate="show"
