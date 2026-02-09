@@ -4,12 +4,7 @@ import logo from "../assets/logo.png";
 import { Moon, Menu } from "lucide-react";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 export default function Nav() {
@@ -36,9 +31,7 @@ export default function Nav() {
         </span>
         <span className="flex items-center gap-2">
           <Button className="md:inline hidden">Get Strarted</Button>
-
-          {/*mobile view */}
-          <Sheet classNa="md:hidden">
+          <Sheet className="md:hidden">
             <SheetTrigger asChild>
               <span className="text-black md:hidden">
                 <Menu />
@@ -47,7 +40,7 @@ export default function Nav() {
             <SheetContent>
               <div className="px-10 items-center font-inter capitalize text-2xl py-15 flex flex-col gap-5 h-full">
                 {["Home", "About", "Pricing", "Features"].map((item, idx) => {
-                  return <a href="">{item}</a>;
+                  return <a href="" key={idx}>{item}</a>;
                 })}
               </div>
             </SheetContent>
