@@ -43,6 +43,10 @@ export const verifyPayment = async (req, res) => {
     }
 
     const user = await User.findById(req.user.id);
+    const diamondsNum = Number(diamonds);
+    if (![200, 450, 1000].includes(diamondsNum)) {
+      return res.status(400).json({ message: "diamonds mis-matched" });
+    }
     user.credits += diamonds;
     await user.save();
 
