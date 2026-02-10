@@ -26,7 +26,6 @@ export default function DashboardContent({ setResponse }) {
       setImage(data.image);
     } catch (err) {
       alert("Failed to generate logo");
-      console.error(err || err?.response?.message);
     } finally {
       setLoading(false);
     }
