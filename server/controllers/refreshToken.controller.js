@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken'
 export const refreshTokenController = async (req, res) => {
   try {
     const token = req.cookies.refreshToken;

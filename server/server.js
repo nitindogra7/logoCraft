@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
   res.send("Server is running ✅");
 });
 
+
 // Routes
 app.use("/auth", authRoutes);
 app.use("/app", dashboardRoute);
