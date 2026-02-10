@@ -5,10 +5,10 @@ import logoutController from "../controllers/logout.controller.js";
 import { refreshTokenController } from "../controllers/refreshToken.controller.js";
 const router = express.Router();
 
-//auth routes
-router.post("/signup", signup);
-router.post("/login", login);
-router.post("/logout", logoutController);
-router.post("/refresh-token", refreshTokenController);
+
+router.post("/auth/signup", signup);
+router.post("/auth/login", login);
+router.post("/auth/logout", logoutController);
+router.post("/auth/refresh-token", refreshTokenController);
 
 export default router;

@@ -5,9 +5,9 @@ import verifyUser from "../middlewares/auth.middleware.js";
 const router = express.Router();
 
 // create razorpay order
-router.post("/create-order", verifyUser ,  createOrder);
+router.post("/app/create-order", verifyUser ,  createOrder);
 
 // verify payment & add diamonds
-router.post("/verify-payment", verifyUser , verifyPayment);
+router.post("/app/verify-payment", verifyUser , verifyPayment);
 
 export default router;
