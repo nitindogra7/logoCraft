@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://192.168.1.12:5173", "http://localhost:5173"],
+    origin: ["https://logo-craft-q4ia.vercel.app"],
     credentials: true,
   }),
 );
