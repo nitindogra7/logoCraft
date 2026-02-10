@@ -14,7 +14,7 @@ export default function RazorpayButton({ amount, diamonds }) {
         name: "logoCraft",
         description: "Buy Diamonds",
         order_id: order.id,
-
+        image : "https://logo-craft-q4ia.vercel.app/assets/logo-BfkDwFNN.png",
         handler: async function (response) {
           await verifyPaymentApi({
             razorpay_order_id: response.razorpay_order_id,
