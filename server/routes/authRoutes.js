@@ -6,9 +6,9 @@ import { refreshTokenController } from "../controllers/refreshToken.controller.j
 const router = express.Router();
 
 
-router.post("/auth/signup", signup);
-router.post("/auth/login", login);
-router.post("/auth/logout", logoutController);
-router.post("/auth/refresh-token", refreshTokenController);
+router.post("/signup", signup);
+router.post("/login", login);
+router.post("/logout", logoutController);
+router.post("/refresh-token", refreshTokenController);
 
 export default router;
