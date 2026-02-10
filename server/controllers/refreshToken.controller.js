@@ -10,7 +10,7 @@ export const refreshTokenController = async (req, res) => {
 
     const user = await User.findById(decoded.userId);
 
-    if (!user || user.refreshToken !== token)
+    if (!user)
       return res.status(401).json({ message: "Invalid refresh token" });
 
     const newAccessToken = await generateAccessToken(user._id);

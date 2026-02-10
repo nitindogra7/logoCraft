@@ -20,7 +20,7 @@ export const generateLogo = async (req, res) => {
     res.status(200).json({
       image: `data:image/png;base64,${imageBase64}`,
       credits: user.credits,
-      images : user.images
+      images: user.images,
     });
   } catch (err) {
     console.error("Error generating logo:", err);
