@@ -3,14 +3,14 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./contextApis/authContext.jsx";
 import "./index.css";
 import App from "./App.jsx";
-import { DashboardProvider } from "./contextApis/DashBoardContext.jsx";
+import { DashBoardContext } from "./contextApis/dashBoardContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
-      <DashboardProvider>
+      <DashBoardContext>
       <App />
-      </DashboardProvider>
+      </DashBoardContext>
     </AuthProvider>
     
   </BrowserRouter>,

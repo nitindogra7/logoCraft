@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { DashBoardContext } from "@/contextApis/DashBoardContext";
 import DashboardNav from "./components/DashboardNav";
+import { DashboardProvider } from "@/contextApis/DashBoardContext";
 import DashboardContent from "./components/DashboarContent";
 export default function DashBoard() {
-  const {response , setResponse } = useContext(DashBoardContext)
+  const {response , setResponse } = useContext(DashboardProvider)
   return (
     <>
       <div className="max-h-dvh overflow-x-hidden">

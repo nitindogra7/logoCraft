@@ -10,10 +10,8 @@ export const DashboardProvider = ({ children }) => {
 
   useEffect(() => {
     if (loading) return;
-    if (!isAuth) {
-      loading;
-      return;
-    }
+    if (!isAuth) return;
+
     const fetchData = async () => {
       try {
         const data = await dashboardApi();
@@ -26,7 +24,12 @@ export const DashboardProvider = ({ children }) => {
     fetchData();
   }, [isAuth, loading]);
 
-  if (loading) return <div className="h-dvh w-full text-5xl flex justify-center items-center font-instrument-serif">loading...</div>;
+  if (loading)
+    return (
+      <div className="h-dvh w-full text-5xl flex justify-center items-center font-instrument-serif">
+        loading...
+      </div>
+    );
 
   return (
     <DashBoardContext.Provider value={{ response, setResponse }}>
