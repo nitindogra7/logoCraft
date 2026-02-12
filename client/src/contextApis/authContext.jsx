@@ -15,19 +15,25 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-
   const login = () => setIsAuth(true);
-  
+
   const logout = async () => {
-    await logoutApi();
+    try {
+      await logoutApi();
+    } catch (error) {
+      console.error("Logout API failed:", error);
+    }
+
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIsAuth(false);
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   return (
-    <AuthContext.Provider value={{login , isAuth, loading, setLoading,  logout }}>
+    <AuthContext.Provider
+      value={{ login, isAuth, loading, setLoading, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

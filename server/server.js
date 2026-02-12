@@ -17,23 +17,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [
-      "https://logo-craft-q4ia.vercel.app",
-      "https://logo-craft-ten.vercel.app",
-    ],
+    origin: ["https://logo-craft-q4ia.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
-
-
 
 // Connect to DB
 connectDb();
 
-
 // Routes
+app.get("/", (req, res) => {
+  res.send("working");
+});
 app.use("/auth", authRoutes);
 app.use("/app", dashboardRoute);
 app.use("/app", paymentRoute);
