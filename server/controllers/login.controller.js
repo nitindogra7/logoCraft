@@ -2,6 +2,7 @@ import User from '../models/user.model.js';
 import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 
 export default async function login(req, res) {
+  try{
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) return res.status(404).json({ message: "user not found" });
@@ -28,4 +29,7 @@ export default async function login(req, res) {
     user: { id: user._id, email: user.email, fullName: user.fullName },
     accessToken,
   });
+}catch(error){
+  res.status(400).message({message : "something went wrong!"})
+}
 }
