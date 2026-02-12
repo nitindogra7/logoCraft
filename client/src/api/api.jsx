@@ -2,8 +2,12 @@ import axios from "axios";
 
 const Api = axios.create({
   baseURL: "https://logocraft-3.onrender.com",
-  withCredentials: true, 
+  withCredentials: true,
 });
+
+let isRefreshing = false;
+let refreshPromise = null;
+
 Api.interceptors.request.use(
   (req) => {
     const token = localStorage.getItem("token");
@@ -19,19 +23,31 @@ Api.interceptors.response.use(
   (res) => res,
   async (error) => {
     const originalReq = error.config;
+    if (originalReq?.url?.includes("/auth/refresh-token")) {
+      return Promise.reject(error);
+    }
 
     if (error.response?.status === 401 && !originalReq._retry) {
       originalReq._retry = true;
 
       try {
-        const res = await Api.post("/auth/refresh-token");
+        if (!isRefreshing) {
+          isRefreshing = true;
+          refreshPromise = Api.post("/auth/refresh-token");
+        }
+
+        const res = await refreshPromise;
         const newToken = res.data.accessToken;
 
         localStorage.setItem("token", newToken);
         originalReq.headers.Authorization = `Bearer ${newToken}`;
 
+        isRefreshing = false;
+        refreshPromise = null;
         return Api(originalReq);
       } catch (err) {
+        isRefreshing = false;
+        refreshPromise = null;
         return Promise.reject(err);
       }
     }
@@ -41,4 +57,3 @@ Api.interceptors.response.use(
 );
 
 export default Api;
-
