@@ -24,10 +24,9 @@ export default function DashboardNav({ response }) {
         animate={{ y: 0, filter: "blur(0px)", transition: { duration: 0.5 } }}
         className="flex items-center justify-between shadow-md py-3 px-6 md:px-20"
       >
-        {/* Logo */}
+  
         <img src={logo} className="w-10 h-10" alt="logo" />
 
-        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-10">
           {data.map((item, idx) => (
             <Link
@@ -40,9 +39,7 @@ export default function DashboardNav({ response }) {
           ))}
         </div>
 
-        {/* Right Side */}
         <div className="flex items-center gap-3">
-          {/* Diamond Pill */}
           <div className="flex items-center gap-2 border rounded-full px-3 py-1">
             <MdDiamond className="text-sky-500 text-xl" />
             <span className="font-semibold text-sm">
@@ -57,7 +54,6 @@ export default function DashboardNav({ response }) {
             </Link>
           </div>
 
-          {/* Mobile Menu (same as before) */}
           <Sheet>
             <SheetTrigger asChild>
               <button className="md:hidden">
