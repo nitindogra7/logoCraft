@@ -45,7 +45,7 @@ export default function History() {
         {images.length === 0 ? (
           <div className="text-gray-500 h-dvh flex justify-center items-center text-5xl">No images found.</div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-15">
             {images.map((img, index) => (
               <div
                 key={index}
