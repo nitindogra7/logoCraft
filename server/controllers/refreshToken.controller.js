@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 import jwt from "jsonwebtoken";
+
 export const refreshTokenController = async (req, res) => {
   try {
     const token = req.cookies.refreshToken;
@@ -24,10 +25,11 @@ export const refreshTokenController = async (req, res) => {
 
     res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: "None",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      domain: process.env.COOKIE_DOMAIN || undefined,
     });
 
     res.status(200).json({
@@ -35,6 +37,7 @@ export const refreshTokenController = async (req, res) => {
       message: "Access token generated",
     });
   } catch (error) {
+    console.error('Refresh token error:', error);
     return res.status(401).json({
       message: "Refresh token expired or invalid",
     });

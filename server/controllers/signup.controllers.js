@@ -1,9 +1,10 @@
 import User from "../models/user.model.js";
 import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
+
 export default async function signup(req, res) {
   try {
     const { fullName, email, password } = req.body || {};
-    if (!fullName || !email || !password )
+    if (!fullName || !email || !password)
       return res.status(400).json({ message: "All fields are required" });
 
     if (
@@ -25,28 +26,34 @@ export default async function signup(req, res) {
 
     if (userExist)
       return res.status(400).json({ message: "user already exists" });
+
     const user = await User.create({ fullName, email, password });
     const accessToken = await generateAccessToken(user._id);
     const refreshToken = await generateRefreshToken(user._id);
+
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: true ,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "None",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      domain: process.env.COOKIE_DOMAIN || undefined,
     });
+
     user.refreshToken = refreshToken;
-    await user.save()
+    await user.save();
+
     res.status(201).json({
       message: "user created",
       user: {
+        id: user._id,
         email: user.email,
         fullName: user.fullName,
       },
       accessToken: accessToken,
     });
   } catch (error) {
-    console.error(error);
+    console.error("Signup error:", error);
     res.status(500).json({ message: "Server error" });
   }
 }

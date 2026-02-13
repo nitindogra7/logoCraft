@@ -23,7 +23,10 @@ Api.interceptors.response.use(
   (res) => res,
   async (error) => {
     const originalReq = error.config;
+    
     if (originalReq?.url?.includes("/auth/refresh-token")) {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
       return Promise.reject(error);
     }
 
@@ -39,16 +42,21 @@ Api.interceptors.response.use(
         const res = await refreshPromise;
         const newToken = res.data.accessToken;
 
+        if (!newToken) {
+          throw new Error("No access token received");
+        }
+
         localStorage.setItem("token", newToken);
         originalReq.headers.Authorization = `Bearer ${newToken}`;
 
-        isRefreshing = false;
-        refreshPromise = null;
         return Api(originalReq);
       } catch (err) {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+        return Promise.reject(err);
+      } finally {
         isRefreshing = false;
         refreshPromise = null;
-        return Promise.reject(err);
       }
     }
 
