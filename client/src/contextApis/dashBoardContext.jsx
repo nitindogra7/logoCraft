@@ -21,9 +21,7 @@ export const DashboardProvider = ({ children }) => {
       }
     };
 
-    if (isAuth) {
-      fetchData();
-    }
+    fetchData();
   }, [isAuth, loading]);
 
   if (loading)
