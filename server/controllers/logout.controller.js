@@ -5,6 +5,7 @@ export default function logoutController(req, res) {
       secure: true,
       sameSite: "None",
       path: "/",
+      partitioned: true,
     });
 
     res.status(200).json({ message: "logged out successfully" });
