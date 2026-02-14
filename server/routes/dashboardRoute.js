@@ -8,6 +8,6 @@ const router = express.Router();
 // Dashboard route
 router.get("/dashboard", verifyUser, dashboard);
 // Logo generation route
-router.post("/logo-craft", verifyUser ,generateLogo);
+router.post("/logo-craft", verifyUser , generateLogo);
 
 export default router;
