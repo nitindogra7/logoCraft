@@ -33,11 +33,10 @@ export default async function signup(req, res) {
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       sameSite: "None",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      domain: process.env.COOKIE_DOMAIN || undefined,
       partitioned: true,
     });
 
