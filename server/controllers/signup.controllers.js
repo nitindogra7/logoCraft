@@ -37,7 +37,6 @@ export default async function signup(req, res) {
       sameSite: "None",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      partitioned: true,
     });
 
     user.refreshToken = refreshToken;

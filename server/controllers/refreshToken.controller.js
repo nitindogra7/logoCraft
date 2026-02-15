@@ -29,7 +29,6 @@ export const refreshTokenController = async (req, res) => {
       sameSite: "None",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      partitioned: true,
     });
 
     res.status(200).json({
