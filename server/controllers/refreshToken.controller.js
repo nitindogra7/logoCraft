@@ -23,10 +23,10 @@ export const refreshTokenController = async (req, res) => {
     user.refreshToken = newRefreshToken;
     await user.save();
 
-    res.cookie("refreshToken", newRefreshToken, {
+    res.cookie("refreshToken", newRefreshToken , {
       httpOnly: true,
-      secure: true,
-      sameSite: "None",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -36,7 +36,7 @@ export const refreshTokenController = async (req, res) => {
       message: "Access token generated",
     });
   } catch (error) {
-    console.error('Refresh token error:', error);
+    console.error("Refresh token error:", error);
     return res.status(401).json({
       message: "Refresh token expired or invalid",
     });

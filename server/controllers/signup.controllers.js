@@ -28,13 +28,13 @@ export default async function signup(req, res) {
       return res.status(400).json({ message: "user already exists" });
 
     const user = await User.create({ fullName, email, password });
-    const accessToken = await generateAccessToken(user._id);
-    const refreshToken = await generateRefreshToken(user._id);
+    const accessToken = generateAccessToken(user._id);
+    const refreshToken = generateRefreshToken(user._id);
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: true,
-      sameSite: "None",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
