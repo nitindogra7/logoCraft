@@ -15,12 +15,15 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+
 app.use(
   cors({
-    origin: ["https://logo-craft-q4ia.vercel.app"],
+    origin: "https://logo-craft-q4ia.vercel.app",
     credentials: true,
-  }),
+  })
 );
+
 
 // Connect to DB
 connectDb();
