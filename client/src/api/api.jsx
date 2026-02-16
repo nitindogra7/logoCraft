@@ -5,63 +5,41 @@ const Api = axios.create({
   withCredentials: true,
 });
 
-let isRefreshing = false;
-let refreshPromise = null;
-
-Api.interceptors.request.use(
-  (req) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      req.headers.Authorization = `Bearer ${token}`;
-    }
-    return req;
-  },
-  (error) => Promise.reject(error)
-);
+Api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 Api.interceptors.response.use(
-  (res) => res,
+  (response) => response,
   async (error) => {
-    const originalReq = error.config;
-    
-    if (originalReq?.url?.includes("/auth/refresh-token")) {
+    const originalRequest = error.config;
+
+    if (originalRequest.url?.includes("/auth/refresh-token")) {
       localStorage.removeItem("token");
       window.location.href = "/login";
       return Promise.reject(error);
     }
 
-    if (error.response?.status === 401 && !originalReq._retry) {
-      originalReq._retry = true;
-
+    if (error.response?.status === 401 && !originalRequest._isRetry) {
+      originalRequest._isRetry = true;
       try {
-        if (!isRefreshing) {
-          isRefreshing = true;
-          refreshPromise = Api.post("/auth/refresh-token");
-        }
-
-        const res = await refreshPromise;
-        const newToken = res.data.accessToken;
-
-        if (!newToken) {
-          throw new Error("No access token received");
-        }
-
-        localStorage.setItem("token", newToken);
-        originalReq.headers.Authorization = `Bearer ${newToken}`;
-
-        return Api(originalReq);
-      } catch (err) {
+        const { data } = await Api.post("/auth/refresh-token");
+        localStorage.setItem("token", data.accessToken);
+        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+        return Api(originalRequest);
+      } catch {
         localStorage.removeItem("token");
         window.location.href = "/login";
-        return Promise.reject(err);
-      } finally {
-        isRefreshing = false;
-        refreshPromise = null;
+        return Promise.reject(error);
       }
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default Api;
