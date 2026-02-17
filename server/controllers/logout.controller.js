@@ -1,11 +1,10 @@
 export default function logoutController(req, res) {
   try {
-    res.cookie("refreshToken", refreshToken, {
+    res.clearCookie("refreshToken", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      secure: true,
+      sameSite: "None",
       path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({ message: "logged out successfully" });

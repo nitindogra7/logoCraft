@@ -17,13 +17,20 @@ export const refreshTokenController = async (req, res) => {
       return res.status(401).json({ message: "Refresh token mismatch" });
     }
 
-    const newAccessToken = await generateAccessToken(user._id);
-    const newRefreshToken = await generateRefreshToken(user._id);
+    const newAccessToken = generateAccessToken(user._id);
+    const newRefreshToken = generateRefreshToken(user._id);
 
     user.refreshToken = newRefreshToken;
     await user.save();
 
-    res.cookie("refreshToken", newRefreshToken , {
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
+    });
+
+    res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
