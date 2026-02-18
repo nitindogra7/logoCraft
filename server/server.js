@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://app.nitindogra.space",
+    origin: ["https://app.nitindogra.space" , 'http://localhost:5173'],
     credentials: true,
   })
 );

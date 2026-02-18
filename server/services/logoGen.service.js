@@ -26,9 +26,7 @@ Make it clean, and visually appealing.
     throw new Error("No image generated");
   }
 
-
   const imageBase64 = response.generatedImages[0].image.imageBytes;
   const image = Buffer.from(imageBase64, "base64");
-
   return image;
 };
