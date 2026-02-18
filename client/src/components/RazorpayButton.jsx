@@ -6,7 +6,6 @@ export default function RazorpayButton({ amount, diamonds }) {
     try {
       const { data } = await createOrderApi(amount);
       const order = data.order;
-
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: order.amount,

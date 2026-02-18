@@ -12,13 +12,19 @@ const BuyDiamonds = lazy(() => import("./pages/diamonds page/BuyDiamonds"));
 
 export default function App() {
   return (
-    <Suspense
-    >
+    <Suspense>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/buy-diamonds" element={<BuyDiamonds />} />
+        <Route
+          path="/buy-diamonds"
+          element={
+            <DashboardProvider>
+              <BuyDiamonds />
+            </DashboardProvider>
+          }
+        />
 
         <Route
           path="/dashboard"

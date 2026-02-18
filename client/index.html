@@ -2,16 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>shad</title>
+    <title>Logocraft – AI Logo Generator | app.nitindogra.space</title>
+    <meta name="description" content="Create stunning logos in seconds with Logocraft, the AI-powered logo generator. Perfect for businesses, startups, and personal branding." />
+    <meta name="keywords" content="AI logo generator, create logo online, free logo maker, startup logo, business logo, branding, Logocraft" />
+    <meta name="author" content="Nitin Dogra" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://app.nitindogra.space" />
 
+    <!-- Favicon / Logo -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Preload important resources -->
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" crossorigin>
+    <link rel="preload" as="image" href="/logo.png">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Logocraft – AI Logo Generator" />
+    <meta property="og:description" content="Create stunning logos in seconds with Logocraft, the AI-powered logo generator." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://app.nitindogra.space" />
+    <meta property="og:image" content="/logo.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Logocraft – AI Logo Generator" />
+    <meta name="twitter:description" content="Create stunning logos in seconds with Logocraft, the AI-powered logo generator." />
+    <meta name="twitter:image" content="/logo.png" />
+
+  
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Logocraft",
+      "url": "https://app.nitindogra.space",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "description": "Create stunning logos in seconds with Logocraft, the AI-powered logo generator. Perfect for businesses, startups, and personal branding.",
+      "image": "/logo.png",
+      "author": { "@type": "Person", "name": "Nitin Dogra" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR", "url": "https://app.nitindogra.space" }
+    }
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
+
+    <!-- Main app JS -->
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Razorpay SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   </body>
 </html>

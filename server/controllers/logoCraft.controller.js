@@ -15,7 +15,6 @@ export const generateLogo = async (req, res) => {
     user.credits -= 25; // deduct credits from users account
     const imageBase64 = imageBuffer.toString("base64");
     const resultImg = await uploadCloudFile(imageBase64);
-
     user.images.push({ image: resultImg });
     await user.save();
 
