@@ -1,19 +1,18 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext , useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoutApi } from "@/api/logoutApi";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(false);
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const [isAuth, setIsAuth] = useState(() => {
     const token = localStorage.getItem("token");
-    setIsAuth(!!token);
-    setLoading(false);
-  }, []);
+    return !!token;
+  });
+
+  const [loading, setLoading] = useState(false);
 
   const login = () => setIsAuth(true);
 
@@ -23,7 +22,6 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Logout API failed:", error);
     }
-
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIsAuth(false);

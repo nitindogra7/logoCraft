@@ -1,36 +1,38 @@
 import { MdDiamond } from "react-icons/md";
-import { motion } from "motion/react";
 import { AuthContext } from "@/contextApis/authContext";
 import { useContext } from "react";
 import { Menu, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { memo } from "react";
 
-export default function DashboardNav({ response }) {
+function DashboardNav({ response }) {
   const { logout } = useContext(AuthContext);
 
   const data = [
     { name: "Home", to: "/" },
     { name: "History", to: "/history" },
     { name: "Favorites", to: "/favorites" },
-  { name: "Dashboard", to: "/dashboard" },
+    { name: "Dashboard", to: "/dashboard" },
   ];
 
   return (
-    <nav className="w-full fixed top-0 z-10 bg-white font-inter">
-      <motion.div
-        initial={{ y: -100, filter: "blur(10px)" }}
-        animate={{ y: 0, filter: "blur(0px)", transition: { duration: 0.5 } }}
-        className="flex items-center justify-between shadow-md py-3 px-6 md:px-20"
-      >
-  
-        <img src={logo} className="w-10 h-10" alt="logo" />
-
+    <nav className="w-full fixed top-0 z-10 bg-white font-inter shadow-md">
+      <div className="flex items-center justify-between py-3 px-6 md:px-20">
+        <img
+          src={logo}
+          width="40"
+          height="40"
+          loading="eager"
+          decoding="async"
+          alt="logo"
+          className="w-10 h-10"
+        />
         <div className="hidden md:flex items-center gap-10">
-          {data.map((item, idx) => (
+          {data.map((item) => (
             <Link
-              key={idx}
+              key={item.name}
               to={item.to}
               className="relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 hover:after:w-full"
             >
@@ -56,29 +58,28 @@ export default function DashboardNav({ response }) {
 
           <Sheet>
             <SheetTrigger asChild>
-              <button className="md:hidden">
+              <button className="md:hidden" aria-label="Open menu">
                 <Menu />
               </button>
             </SheetTrigger>
 
             <SheetContent>
               <div className="flex flex-col items-center justify-center py-20 gap-6 text-2xl mt-10 font-inter">
-                {data.map((item, idx) => (
-                  <Link key={idx} to={item.to}>
+                {data.map((item) => (
+                  <Link key={item.name} to={item.to}>
                     {item.name}
                   </Link>
                 ))}
 
                 <button
                   onClick={logout}
-                  className="mt-6 px-4  bg-sky-500 text-white py-2 rounded"
+                  className="mt-6 px-4 bg-sky-500 text-white py-2 rounded"
                 >
                   Logout
                 </button>
               </div>
             </SheetContent>
           </Sheet>
-
           <button
             onClick={logout}
             className="hidden md:inline-block bg-sky-500 text-white px-4 py-1 rounded"
@@ -86,7 +87,9 @@ export default function DashboardNav({ response }) {
             Logout
           </button>
         </div>
-      </motion.div>
+      </div>
     </nav>
   );
 }
+
+export default memo(DashboardNav);

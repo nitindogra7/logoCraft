@@ -1,28 +1,46 @@
-import Home from "./pages/home/Home";
-import History from "./pages/history/History";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import DashBoard from "./pages/dashboard/Dashboard";
-import ProtectedRoute from "./components/protectedRoutes";
 import { Routes, Route } from "react-router-dom";
-import BuyDiamonds from "./pages/diamonds page/BuyDiamonds";
+import { Suspense, lazy } from "react";
+import ProtectedRoute from "./components/protectedRoutes";
+import { DashboardProvider } from "./contextApis/dashBoardContext.jsx";
+
+const Home = lazy(() => import("./pages/home/Home"));
+const History = lazy(() => import("./pages/history/History"));
+const Signup = lazy(() => import("./pages/Signup"));
+const Login = lazy(() => import("./pages/Login"));
+const DashBoard = lazy(() => import("./pages/dashboard/Dashboard"));
+const BuyDiamonds = lazy(() => import("./pages/diamonds page/BuyDiamonds"));
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <DashBoard />{" "}
-          </ProtectedRoute>
-        }
-      />
-      <Route path="/history" element={<History />}/>
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/buy-diamonds" element={<BuyDiamonds />} />
-    </Routes>
+    <Suspense
+    >
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/buy-diamonds" element={<BuyDiamonds />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardProvider>
+                <DashBoard />
+              </DashboardProvider>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <ProtectedRoute>
+              <DashboardProvider>
+                <History />
+              </DashboardProvider>
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Suspense>
   );
 }

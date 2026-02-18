@@ -8,8 +8,8 @@ export default function HeroSection() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2,
+        staggerChildren: 0.05,
+        delayChildren: 0.05,
       },
     },
   };
@@ -24,7 +24,7 @@ export default function HeroSection() {
       y: 0,
       opacity: 1,
       filter : "blur(0px)",
-      transition: { duration: 0.5, easeInOut },
+      transition: { duration: 0.2, easeInOut },
     },
   };
 
@@ -35,7 +35,7 @@ export default function HeroSection() {
     show : {
       opacity : 1 , y : 0 ,filter : "blur(0px)" , 
       transition : {
-        delay : text.split(" ").length * 0.3
+        delay : text.split(" ").length * 0.1
       }
     }
   }
