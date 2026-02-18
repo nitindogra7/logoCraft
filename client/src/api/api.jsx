@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "https://logocraft.onrender.com",
+  baseURL: "https://api.nitindogra.space",
   withCredentials: true,
 });
 
@@ -28,8 +28,6 @@ Api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return Api(originalRequest);
       } catch {
-        localStorage.removeItem("token");
-        window.location.href = "/login";
         return Promise.reject(error);
       }
     }

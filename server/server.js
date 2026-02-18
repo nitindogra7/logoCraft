@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://logo-craft-q4ia.vercel.app",
+    origin: "https://app.nitindogra.space",
     credentials: true,
   })
 );
