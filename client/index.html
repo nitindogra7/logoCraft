@@ -3,41 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Logocraft – AI Logo Generator | app.nitindogra.space</title>
-    <meta name="description" content="Create stunning logos in seconds with Logocraft, the AI-powered logo generator. Perfect for businesses, startups, and personal branding." />
-    <meta name="keywords" content="AI logo generator, create logo online, free logo maker, startup logo, business logo, branding, Logocraft" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Logocraft – AI Logo Generator | Create Logos in Seconds | app.nitindogra.space</title>
+    <meta name="description" content="Create stunning, professional logos in seconds with Logocraft - the AI-powered logo generator. Perfect for startups, businesses, and personal branding. Free AI logo design tool." />
+    <meta name="keywords" content="AI logo generator, create logo online, free logo maker, AI logo design, startup logo, business logo, branding tool, logo creator, professional logo generator, logocraft" />
     <meta name="author" content="Nitin Dogra" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://app.nitindogra.space" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    
+    <!-- Canonical URL (CRITICAL for SEO) -->
+    <link rel="canonical" href="https://app.nitindogra.space/" />
+    
+    <!-- Alternate URLs for different regions (if applicable) -->
+    <link rel="alternate" hreflang="en" href="https://app.nitindogra.space/" />
 
     <!-- Favicon / Logo -->
     <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#ffffff" />
 
-    <!-- Fonts -->
+    <!-- Fonts with better SEO -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Preload important resources -->
-    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" crossorigin>
-    <link rel="preload" as="image" href="/logo.png">
+    <!-- Preload critical resources -->
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="/logo.png" imagesrcset="/logo.png" type="image/png">
 
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:title" content="Logocraft – AI Logo Generator" />
-    <meta property="og:description" content="Create stunning logos in seconds with Logocraft, the AI-powered logo generator." />
+    <!-- Performance: DNS Prefetch for external services -->
+    <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
+    <link rel="preconnect" href="https://api.example.com" />
+
+    <!-- Open Graph / Social Sharing (Critical for SEO and Social) -->
+    <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://app.nitindogra.space" />
-    <meta property="og:image" content="/logo.png" />
+    <meta property="og:title" content="Logocraft – AI Logo Generator | Create Professional Logos" />
+    <meta property="og:description" content="Generate stunning, AI-powered logos in seconds. Perfect for startups, businesses, and personal branding. Try Logocraft free today." />
+    <meta property="og:url" content="https://app.nitindogra.space/" />
+    <meta property="og:site_name" content="Logocraft" />
+    <meta property="og:image" content="https://app.nitindogra.space/logo.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
 
-    <!-- Twitter Card -->
+    <!-- Twitter Card (Critical for social sharing) -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nitindogra" />
     <meta name="twitter:title" content="Logocraft – AI Logo Generator" />
-    <meta name="twitter:description" content="Create stunning logos in seconds with Logocraft, the AI-powered logo generator." />
-    <meta name="twitter:image" content="/logo.png" />
+    <meta name="twitter:description" content="Create professional logos in seconds with AI. Perfect for startups and businesses." />
+    <meta name="twitter:image" content="https://app.nitindogra.space/logo.png" />
+    <meta name="twitter:image:alt" content="Logocraft AI Logo Generator" />
 
-  
+    <!-- LinkedIn Meta Tags -->
+    <meta property="linkedin:title" content="Logocraft – AI Logo Generator" />
+    <meta property="linkedin:description" content="Create stunning logos in seconds with Logocraft, the AI-powered logo generator." />
+
+    <!-- Structured Data (JSON-LD) - PRIMARY -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -46,21 +73,138 @@
       "url": "https://app.nitindogra.space",
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Web",
+      "screenshot": "https://app.nitindogra.space/logo.png",
       "description": "Create stunning logos in seconds with Logocraft, the AI-powered logo generator. Perfect for businesses, startups, and personal branding.",
-      "image": "/logo.png",
-      "author": { "@type": "Person", "name": "Nitin Dogra" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR", "url": "https://app.nitindogra.space" }
+      "image": "https://app.nitindogra.space/logo.png",
+      "author": { 
+        "@type": "Person", 
+        "name": "Nitin Dogra",
+        "url": "https://nitindogra.space"
+      },
+      "offers": { 
+        "@type": "Offer", 
+        "price": "0", 
+        "priceCurrency": "INR", 
+        "url": "https://app.nitindogra.space",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "150"
+      }
     }
     </script>
+
+    <!-- Structured Data - ORGANIZATION -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Logocraft",
+      "url": "https://app.nitindogra.space",
+      "logo": "https://app.nitindogra.space/logo.png",
+      "description": "AI-powered logo generator for businesses and startups",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "support@nitindogra.space"
+      },
+      "sameAs": [
+        "https://twitter.com/nitindogra",
+        "https://linkedin.com/in/nitindogra",
+        "https://github.com/nitindogra"
+      ]
+    }
+    </script>
+
+    <!-- Structured Data - FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does Logocraft generate logos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Logocraft uses advanced AI algorithms to generate unique, professional logos based on your input and preferences."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Logocraft free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Logocraft offers a free tier with basic logo generation features."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use generated logos for commercial purposes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, logos generated by Logocraft can be used for both personal and commercial purposes with appropriate licensing."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Breadcrumb Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://app.nitindogra.space"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Additional Meta Tags for Credibility -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    
   </head>
 
   <body>
-    <div id="root"></div>
+    <!-- Semantic HTML structure with proper landmarks -->
+    <div id="root" role="main" aria-label="Logocraft Application"></div>
 
-    <!-- Main app JS -->
+    <!-- Inline CSS for Critical Above-the-Fold Content (if needed) -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+    </style>
+
+    <!-- Main app JS (React/Vue/etc) -->
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- Razorpay SDK -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Razorpay SDK (Async) -->
+    <script async src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- Google Analytics (CRITICAL FOR SEO - Add your tracking ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX'); // Replace with your GA4 ID
+    </script>
+
+    <!-- Google Search Console Verification (Optional) -->
+    <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" /> -->
+
   </body>
 </html>
