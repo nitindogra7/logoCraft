@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["https://logoCraft.nitindogra.space" , 'http://localhost:5173'],
+    origin: ["https://logocraft.nitindogra.space" , 'http://localhost:5173'],
     credentials: true,
   })
 );
