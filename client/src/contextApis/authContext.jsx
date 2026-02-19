@@ -31,6 +31,8 @@ export const AuthProvider = ({ children }) => {
       await signupApi(input);
     } catch (error) {
       console.log(error);
+    }finally{
+      setIsAuth(true)
     }
   };
 
