@@ -45,7 +45,7 @@ export default function HeroSection() {
       initial = "hidden"
       animate = "show"
       variants={parentVariants}
-      className="py-25 md:py-30 md:px-20 px-5 max-w-3xl flex flex-col gap-3">
+      className="py-25 md:py-36 md:px-20 px-5 max-w-3xl flex flex-col gap-3">
         <motion.h1
           initial="hidden"
           animate="show"

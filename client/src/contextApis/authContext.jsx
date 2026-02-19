@@ -1,6 +1,8 @@
-import { createContext , useState } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoutApi } from "@/api/logoutApi";
+import { loginApi } from "@/api/loginApi";
+import { signupApi } from "@/api/signupApi";
 
 export const AuthContext = createContext();
 
@@ -14,7 +16,23 @@ export const AuthProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const login = () => setIsAuth(true);
+  const login = async (input) => {
+    try {
+      await loginApi(input);
+    } catch (error) {
+      console.log(error);
+    }finally{
+      setIsAuth(true)
+    }
+  };
+
+  const signup = async (input) => {
+    try {
+      await signupApi(input);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const logout = async () => {
     try {
@@ -30,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ login, isAuth, loading, setLoading, logout }}
+      value={{ login, isAuth, loading, setLoading, logout , signup }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,12 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
-import { signupApi } from "@/api/signupApi";
 import { MdAccountCircle } from "react-icons/md";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "@/contextApis/authContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -46,6 +43,7 @@ export default function Signup() {
           >
             <input
               type="text"
+              required
               placeholder="Full Name"
               onChange={(e) => {
                 setInput((prev) => ({ ...prev, fullName: e.target.value }));
@@ -55,6 +53,7 @@ export default function Signup() {
 
             <input
               type="email"
+              required
               placeholder="Email"
               onChange={(e) => {
                 setInput((prev) => ({ ...prev, email: e.target.value }));
@@ -64,6 +63,7 @@ export default function Signup() {
 
             <input
               type="password"
+              required
               onChange={(e) => {
                 setInput((prev) => ({ ...prev, password: e.target.value }));
               }}

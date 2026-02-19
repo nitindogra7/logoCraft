@@ -45,7 +45,7 @@ function Nav() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <Link to="/signup">
+          <Link to="/dashboard">
             <Button className="md:inline hidden">Get Started</Button>
           </Link>
           <Sheet>

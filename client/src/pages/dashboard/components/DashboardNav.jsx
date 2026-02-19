@@ -1,11 +1,10 @@
 import { MdDiamond } from "react-icons/md";
 import { AuthContext } from "@/contextApis/authContext";
-import { useContext } from "react";
 import { Menu, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { memo } from "react";
+import { memo, useContext } from "react";
 
 function DashboardNav({ response }) {
   const { logout } = useContext(AuthContext);
@@ -45,7 +44,7 @@ function DashboardNav({ response }) {
           <div className="flex items-center gap-2 border rounded-full px-3 py-1">
             <MdDiamond className="text-sky-500 text-xl" />
             <span className="font-semibold text-sm">
-              {response?.userData?.credits ?? 0}
+              {response?.userData?.credits ?? "..."}
             </span>
 
             <Link
