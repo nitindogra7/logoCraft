@@ -19,20 +19,22 @@ export const AuthProvider = ({ children }) => {
   const login = async (input) => {
     try {
       await loginApi(input);
+      setIsAuth(true)
     } catch (error) {
       console.log(error);
-    }finally{
-      setIsAuth(true)
+      setIsAuth(false)
+      navigate("/login")
     }
   };
 
   const signup = async (input) => {
     try {
       await signupApi(input);
+      setIsAuth(true)
     } catch (error) {
       console.log(error);
-    }finally{
-      setIsAuth(true)
+      setIsAuth(false);
+      navigate("/singup")
     }
   };
 

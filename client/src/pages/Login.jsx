@@ -12,9 +12,9 @@ export default function Login() {
   const navigate = useNavigate();
   async function handleSubmit(e) {
     setLoading(true);
+    e.preventDefault();
     try {
-      e.preventDefault();
-        if (input.email === "" || input.password === "") {
+      if (input.email === "" || input.password === "") {
         console.log("empty feilds");
         return;
       }
@@ -40,36 +40,40 @@ export default function Login() {
         </p>
 
         <div className="flex flex-col gap-4">
-          <form action="" onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input
-            type="email"
-            required
-            placeholder="Email"
-            onChange={(e) => setInput({ ...input, email: e.target.value })}
-            className="bg-zinc-100 p-3 rounded-lg outline-none focus:ring-2 ring-black"
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            onChange={(e) => setInput({ ...input, password: e.target.value })}
-            className="bg-zinc-100 p-3 rounded-lg outline-none focus:ring-2 ring-black"
-          />
-          <Button
-            className="mt-2 w-full flex items-center justify-center gap-2"
-            disabled={loading}
-            type="submit"
+          <form
+            action=""
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4"
           >
-            {loading ? (
-              <>
-                <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                Logging in...
-              </>
-            ) : (
-              "Login"
-            )}
-          </Button>
+            <input
+              type="email"
+              required
+              placeholder="Email"
+              onChange={(e) => setInput({ ...input, email: e.target.value })}
+              className="bg-zinc-100 p-3 rounded-lg outline-none focus:ring-2 ring-black"
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              required
+              onChange={(e) => setInput({ ...input, password: e.target.value })}
+              className="bg-zinc-100 p-3 rounded-lg outline-none focus:ring-2 ring-black"
+            />
+            <Button
+              className="mt-2 w-full flex items-center justify-center gap-2"
+              disabled={loading}
+              type="submit"
+            >
+              {loading ? (
+                <>
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                  Logging in...
+                </>
+              ) : (
+                "Login"
+              )}
+            </Button>
           </form>
 
           <p className="text-sm text-center text-zinc-500">

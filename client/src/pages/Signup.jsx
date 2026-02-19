@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
   const navigate = useNavigate();
-  const { signup, loading , setLoading } = useContext(AuthContext);
+  const { signup, loading, setLoading } = useContext(AuthContext);
   const [input, setInput] = useState({
     fullName: "",
     email: "",
@@ -15,15 +15,15 @@ export default function Signup() {
   });
 
   async function submitSignup(e) {
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
     try {
-      e.preventDefault();
       await signup(input);
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -77,10 +77,12 @@ export default function Signup() {
               className="bg-zinc-100 p-3 rounded-lg outline-none focus:ring-2 ring-black"
             />
 
-            <Button
-            disabled={loading}
-            className="mt-2" type="submit">
-              {loading ? <p className="animate-pulse">creating account..</p> : <p>signup</p>}
+            <Button disabled={loading} className="mt-2" type="submit">
+              {loading ? (
+                <p className="animate-pulse">creating account..</p>
+              ) : (
+                <p>signup</p>
+              )}
             </Button>
           </form>
 
