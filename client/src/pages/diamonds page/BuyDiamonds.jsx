@@ -11,7 +11,7 @@ export default function BuyDiamonds() {
     {
       diamonds: 200,
       price: "₹99",
-      amount: 1,
+      amount: 99,
       popular: false,
     },
     {
