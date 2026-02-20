@@ -6,7 +6,7 @@ import logo from "../../../assets/logo.png";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { memo, useContext } from "react";
 
-function DashboardNav({ response }) {
+function DashboardNav({ response , credits }) {
   const { logout } = useContext(AuthContext);
 
   const data = [
@@ -44,7 +44,7 @@ function DashboardNav({ response }) {
           <div className="flex items-center gap-2 border rounded-full px-3 py-1">
             <MdDiamond className="text-sky-500 text-xl" />
             <span className="font-semibold text-sm">
-              {response?.userData?.credits ?? "..."}
+              { credits }
             </span>
 
             <Link

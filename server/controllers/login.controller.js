@@ -29,7 +29,12 @@ export default async function login(req, res) {
 
     res.status(200).json({
       message: "user logged in successfully",
-      user: { id: user._id, email: user.email, fullName: user.fullName },
+      user: {
+        id: user._id,
+        email: user.email,
+        fullName: user.fullName,
+        credits : user.credits,
+      },
       accessToken,
     });
   } catch (error) {

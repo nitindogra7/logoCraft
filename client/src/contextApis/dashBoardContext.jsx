@@ -6,6 +6,8 @@ export const DashBoardContext = createContext();
 export const DashboardProvider = ({ children }) => {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(true);
+  const user = JSON.parse(localStorage.getItem('user'))
+  const credits = user.credits
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +25,7 @@ export const DashboardProvider = ({ children }) => {
   }, []);
 
   return (
-    <DashBoardContext.Provider value={{ response, setResponse, loading }}>
+    <DashBoardContext.Provider value={{ response, setResponse, loading , credits}}>
       {children}
     </DashBoardContext.Provider>
   );

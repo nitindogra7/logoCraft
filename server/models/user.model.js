@@ -18,7 +18,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    refreshToken: { type: String },
+    refreshToken: { 
+      type: String
+     },
     credits: {
       type: Number,
       default: 100,
