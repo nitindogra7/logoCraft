@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "https://logocraft.nitindogra.space",
+  baseURL: "https://api.nitindogra.space",
   withCredentials: true,
 });
 
