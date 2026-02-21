@@ -12,27 +12,51 @@ export default function FeatureSection() {
 
   return (
     <motion.div
-      className="md:px-20 py-25 px-5 bg-gray flex flex-col items-center gap-10 rounded-t-4xl"
+      className="relative md:px-20 py-25 px-5 bg-[#080A0F] flex flex-col items-center gap-10 overflow-hidden"
       initial={{ opacity: 0, y: 200 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.1 }}
     >
+      {/* Background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-sky-500/6 rounded-full blur-[100px] pointer-events-none" />
+
       <HighlightButton text="Features" />
 
-      <h1 className="text-white text-5xl text-center font-medium capitalize mb-4">
-        Logo Quality our <br />
-        <span className="font-instrument-serif italic">product offers</span>
-      </h1>
+      <div className="text-center relative z-10">
+        <h2 className="text-white text-4xl md:text-5xl font-semibold leading-tight">
+          Logo quality our{" "}
+          <br />
+          <span className="font-instrument-serif italic text-sky-400">
+            product offers
+          </span>
+        </h2>
+        <p className="text-neutral-500 mt-4 max-w-sm mx-auto text-sm leading-relaxed">
+          Every logo is crafted with precision — vivid, scalable, and uniquely yours.
+        </p>
+      </div>
 
-      <div className="md:flex grid grid-cols-2 justify-center grid-rows-2 md:justify-around flex-wrap w-full gap-6">
+      {/* Image Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 w-full max-w-4xl relative z-10">
         {images.map((ele, idx) => (
-          <img
+          <motion.div
             key={idx}
-            src={ele}
-            alt={`feature-${idx}`}
-            className="rounded-lg md:w-45 w-full"
-          />
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: idx * 0.06 }}
+            className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.03] cursor-pointer"
+          >
+            <img
+              src={ele}
+              alt={`feature-${idx}`}
+              className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {/* hover overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+          </motion.div>
         ))}
       </div>
     </motion.div>

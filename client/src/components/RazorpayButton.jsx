@@ -13,7 +13,7 @@ export default function RazorpayButton({ amount, diamonds }) {
         name: "logoCraft",
         description: "Buy Diamonds",
         order_id: order.id,
-        image : "https://logo-craft-q4ia.vercel.app/assets/logo-BfkDwFNN.png",
+        image: "https://logo-craft-q4ia.vercel.app/assets/logo-BfkDwFNN.png",
         handler: async function (response) {
           await verifyPaymentApi({
             razorpay_order_id: response.razorpay_order_id,
@@ -31,5 +31,14 @@ export default function RazorpayButton({ amount, diamonds }) {
     }
   };
 
-  return <Button className="bg-sky-500 hover:bg-sky-300" onClick={handlePayment}>Buy {diamonds} Diamonds</Button>;
+  return (
+    <Button
+      onClick={handlePayment}
+      className="w-full rounded-xl bg-sky-500 hover:bg-sky-400 text-white border-0
+        shadow-[0_0_24px_rgba(56,189,248,0.25)] hover:shadow-[0_0_36px_rgba(56,189,248,0.45)]
+        transition-all duration-300 font-inter text-sm font-semibold py-5"
+    >
+      Buy {diamonds} Diamonds
+    </Button>
+  );
 }

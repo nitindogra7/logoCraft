@@ -5,6 +5,7 @@ const FeatureSection = lazy(() => import("./FeatureSection.jsx"));
 const GetStarted = lazy(() => import("./getStarted.jsx"));
 import { Suspense } from "react";
 const Steps = lazy(()=> import("../../components/Steps.jsx"))
+const Footer = lazy(() => import("../../components/Footer.jsx"))
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <FeatureSection />
         <GetStarted />
         <Steps />
+        <Footer/>
         </Suspense>
       </main>
     </>

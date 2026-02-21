@@ -12,6 +12,10 @@
 }
 html {
   scroll-behavior: smooth;
+  background-color: #090a0f;
+}
+body{
+  background-color: #090a0f;
 }
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
