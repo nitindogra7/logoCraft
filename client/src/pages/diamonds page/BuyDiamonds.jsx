@@ -6,7 +6,7 @@ import { DashBoardContext } from "@/contextApis/dashBoardContext";
 import RazorpayButton from "@/components/RazorpayButton";
 
 export default function BuyDiamonds() {
-  const { response , credits } = useContext(DashBoardContext);
+  const { response , credits ,user} = useContext(DashBoardContext);
   const plans = [
     {
       diamonds: 200,
@@ -30,7 +30,7 @@ export default function BuyDiamonds() {
 
   return (
     <>
-      <DashboardNav response={response} credits={credits} />
+      <DashboardNav response={response} user={user} />
       <div className="min-h-screen bg-sky-50 pt-28 px-6 md:px-20 font-inter">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold ">

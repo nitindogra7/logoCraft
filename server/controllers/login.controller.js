@@ -33,7 +33,6 @@ export default async function login(req, res) {
         id: user._id,
         email: user.email,
         fullName: user.fullName,
-        credits : user.credits,
       },
       accessToken,
     });

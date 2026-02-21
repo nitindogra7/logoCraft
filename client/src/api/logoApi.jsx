@@ -5,7 +5,6 @@ export const generateLogoApi = async ({ prompt, style }) => {
     const res = await Api.post("/app/logo-craft", {
       prompt,
     });
-
     return res.data;
   } catch (error) {
     console.log(

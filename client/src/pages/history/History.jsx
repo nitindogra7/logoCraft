@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { DashBoardContext } from "@/contextApis/dashBoardContext";
 
 export default function History() {
-  const { response, loading , credits} = useContext(DashBoardContext);
+  const { response, loading , user} = useContext(DashBoardContext);
 
   const images = response?.userData?.images || [];
 
@@ -33,7 +33,7 @@ export default function History() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardNav response={response} credits={credits} />
+      <DashboardNav response={response} user={user} />
 
       <div className="max-w-6xl mx-auto px-4 py-8 pt-28">
         <h2 className="text-2xl font-bold mb-6 font-instrument-serif">
