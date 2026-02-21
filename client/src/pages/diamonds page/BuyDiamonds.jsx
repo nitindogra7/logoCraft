@@ -9,7 +9,7 @@ import { useToast } from "@/contextApis/toastContext";
 
 export default function BuyDiamonds() {
   const { response, user } = useContext(DashBoardContext);
-  const { addToast } = useToast(); 
+  const { addToast } = useToast();
 
   const plans = [
     {
@@ -36,26 +36,22 @@ export default function BuyDiamonds() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#080A0F] relative overflow-hidden">
-      
-      {/* Background */}
+    <div className="min-h-dvh bg-[#080A0F] relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-sky-500/8 rounded-full blur-[140px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-sky-500/6 rounded-full blur-[80px]" />
       </div>
 
       <DashboardNav response={response} user={user} />
 
-      <div className="relative z-10 pt-28 pb-20 px-6 md:px-20 font-inter">
-        
-        {/* Header */}
+      <div className="relative z-10 pt-[88px] pb-20 px-6 md:px-20 font-inter">
         <div className="text-center mb-14">
           <span className="inline-flex items-center gap-2 text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20 px-4 py-1.5 rounded-full tracking-widest uppercase mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
@@ -69,19 +65,17 @@ export default function BuyDiamonds() {
           </p>
         </div>
 
-        {/* Plans */}
         <div className="grid gap-10 md:grid-cols-3 max-w-4xl mx-auto">
-          {plans.map((plan, idx) => (
+          {plans.map((plan) => (
             <motion.div
-              key={idx}
-              whileHover={{ scale: 1.02, y: -4 }}
+              key={plan.diamonds}
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
-              className={`relative rounded-2xl flex flex-col items-center p-8 border
-                ${
-                  plan.popular
-                    ? "bg-white/[0.05] border-sky-500/40"
-                    : "bg-white/[0.03] border-white/[0.08]"
-                }`}
+              className={`relative rounded-2xl flex flex-col items-center p-8 border ${
+                plan.popular
+                  ? "bg-white/[0.05] border-sky-500/40"
+                  : "bg-white/[0.03] border-white/[0.08]"
+              }`}
             >
               {plan.popular && (
                 <span className="absolute -top-3.5 px-4 py-1 bg-sky-500 text-white text-xs font-semibold rounded-full">
