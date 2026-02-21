@@ -30,7 +30,7 @@ function DashboardNav({ user }) {
         />
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 ml-25">
           {data.map((item) => (
             <Link
               key={item.name}
