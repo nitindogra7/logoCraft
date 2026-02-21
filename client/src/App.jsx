@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import ProtectedRoute from "./components/protectedRoutes";
 import { DashboardProvider } from "./contextApis/dashBoardContext.jsx";
-
 const Home = lazy(() => import("./pages/home/Home"));
 const History = lazy(() => import("./pages/history/History"));
 const Signup = lazy(() => import("./pages/Signup"));
@@ -41,7 +40,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <DashboardProvider>
-                <History />
+                  <History />
               </DashboardProvider>
             </ProtectedRoute>
           }

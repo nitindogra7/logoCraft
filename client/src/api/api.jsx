@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "https://api.nitindogra.space",
+  baseURL: "http://localhost:3000",
   withCredentials: true,
 });
 

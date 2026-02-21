@@ -5,10 +5,13 @@ import { useState, useContext } from "react";
 import { AuthContext } from "@/contextApis/authContext";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useToast } from "@/contextApis/toastContext"; 
 
 export default function Signup() {
   const navigate = useNavigate();
   const { signup, loading, setLoading } = useContext(AuthContext);
+  const { addToast } = useToast(); 
+
   const [input, setInput] = useState({
     fullName: "",
     email: "",
@@ -18,11 +21,23 @@ export default function Signup() {
   async function submitSignup(e) {
     e.preventDefault();
     setLoading(true);
+
     try {
       await signup(input);
-      navigate("/dashboard");
+
+      addToast("Account created successfully!", "success");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 800);
     } catch (error) {
       console.error(error);
+
+      addToast(
+        error?.response?.data?.message ||
+          "Signup failed. Please try again.",
+        "error"
+      );
     } finally {
       setLoading(false);
     }
@@ -30,9 +45,8 @@ export default function Signup() {
 
   return (
     <div className="min-h-dvh w-dvw flex items-center justify-center bg-[#080A0F] px-5 relative overflow-hidden">
-
       {/* Background atmosphere */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none ">
         <div
           className="absolute inset-0 opacity-[0.025]"
           style={{
@@ -48,7 +62,7 @@ export default function Signup() {
       {/* Back to Home button */}
       <Link
         to="/"
-        className="absolute top-5 left-5 z-20 flex items-center gap-1.5 text-xs text-neutral-500 hover:text-white
+        className="absolute top-5  left-5 z-20 flex items-center gap-1.5 text-xs text-neutral-500 hover:text-white
           bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/20
           px-3 py-2 rounded-full transition-all duration-200 font-inter"
       >
@@ -60,9 +74,8 @@ export default function Signup() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] w-full max-w-md rounded-2xl p-8 shadow-[0_0_60px_rgba(0,0,0,0.5)]"
+        className="relative z-10 mt-10 bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] w-full max-w-md rounded-2xl p-8 shadow-[0_0_60px_rgba(0,0,0,0.5)]"
       >
-        {/* Logo mark */}
         <div className="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-500/25 flex items-center justify-center mb-6">
           <MdAccountCircle className="text-sky-400 text-xl" />
         </div>

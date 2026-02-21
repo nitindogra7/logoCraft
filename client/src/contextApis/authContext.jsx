@@ -18,23 +18,24 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (input) => {
     try {
-      await loginApi(input);
-      setIsAuth(true)
+      const data = await loginApi(input);
+      setIsAuth(true);
+      return data; 
     } catch (error) {
-      console.log(error);
-      setIsAuth(false)
-      navigate("/login")
+      setIsAuth(false);
+      throw error; 
     }
   };
 
+ 
   const signup = async (input) => {
     try {
-      await signupApi(input);
-      setIsAuth(true)
+      const data = await signupApi(input);
+      setIsAuth(true);
+      return data;
     } catch (error) {
-      console.log(error);
       setIsAuth(false);
-      navigate("/singup")
+      throw error; 
     }
   };
 
@@ -44,6 +45,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Logout API failed:", error);
     }
+
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIsAuth(false);
@@ -52,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ login, isAuth, loading, setLoading, logout , signup }}
+      value={{ login, isAuth, loading, setLoading, logout, signup }}
     >
       {children}
     </AuthContext.Provider>

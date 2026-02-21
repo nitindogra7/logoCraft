@@ -2,29 +2,43 @@ import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { loginApi } from "@/api/loginApi";
 import { AuthContext } from "@/contextApis/authContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useToast } from "@/contextApis/toastContext"; 
 
 export default function Login() {
   const [input, setInput] = useState({ email: "", password: "" });
   const { login, loading, setLoading } = useContext(AuthContext);
+  const { addToast } = useToast();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
-    setLoading(true);
     e.preventDefault();
+
+    if (!input.email || !input.password) {
+      addToast("Please fill all fields.", "error");
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      if (input.email === "" || input.password === "") {
-        console.log("empty feilds");
-        return;
-      }
       await login(input);
-      navigate(`/dashboard`);
+
+      addToast("Logged in successfully!", "success");
+
+      setTimeout(() => {
+        navigate(`/dashboard`);
+      }, 700);
     } catch (error) {
       console.log(error);
+
+      addToast(
+        error?.response?.data?.message || "Login failed. Check your credentials.",
+        "error"
+      );
     } finally {
       setLoading(false);
     }
@@ -32,7 +46,6 @@ export default function Login() {
 
   return (
     <div className="min-h-dvh w-dvw flex items-center justify-center bg-[#080A0F] px-5 relative overflow-hidden">
-
       {/* Background atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
         <div

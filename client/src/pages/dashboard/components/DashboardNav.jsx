@@ -11,7 +11,6 @@ function DashboardNav({ user }) {
   const data = [
     { name: "Home", to: "/" },
     { name: "History", to: "/history" },
-    { name: "Favorites", to: "/favorites" },
     { name: "Dashboard", to: "/dashboard" },
   ];
 

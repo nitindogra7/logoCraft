@@ -5,7 +5,6 @@ import { DashBoardContext } from "@/contextApis/dashBoardContext";
 
 export default function History() {
   const { response, loading, user } = useContext(DashBoardContext);
-
   const images = response?.userData?.images || [];
 
   const downloadImage = useCallback((src, index) => {
@@ -114,15 +113,10 @@ export default function History() {
                 {/* Actions */}
                 <div className="flex gap-2">
                   <Button
-                    className="w-1/2 text-xs rounded-lg bg-white/[0.06] hover:bg-white/[0.10] text-neutral-300 hover:text-white border border-white/[0.08] transition-all duration-200 font-inter"
+                    className="w-full text-xs rounded-lg bg-white/[0.06] hover:bg-white/[0.10] text-neutral-300 hover:text-white border border-white/[0.08] transition-all duration-200 font-inter"
                     onClick={() => downloadImage(img.image, index)}
                   >
                     Download
-                  </Button>
-                  <Button
-                    className="w-1/2 text-xs rounded-lg bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-white border border-sky-500/20 hover:border-sky-500 transition-all duration-200 font-inter"
-                  >
-                    Favorite
                   </Button>
                 </div>
               </div>
