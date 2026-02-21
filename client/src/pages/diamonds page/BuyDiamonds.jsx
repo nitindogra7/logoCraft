@@ -4,9 +4,10 @@ import DashboardNav from "../dashboard/components/DashboardNav";
 import { useContext } from "react";
 import { DashBoardContext } from "@/contextApis/dashBoardContext";
 import RazorpayButton from "@/components/RazorpayButton";
+import Footer from "@/components/Footer";
 
 export default function BuyDiamonds() {
-  const { response, credits, user } = useContext(DashBoardContext);
+  const { response , user } = useContext(DashBoardContext);
 
   const plans = [
     {
@@ -71,7 +72,7 @@ export default function BuyDiamonds() {
         </div>
 
         {/* Plans grid */}
-        <div className="grid gap-5 md:grid-cols-3 max-w-4xl mx-auto">
+        <div className="grid gap-5 md:grid-cols-3 max-w-4xl mx-auto gap-10">
           {plans.map((plan, idx) => (
             <motion.div
               key={idx}
@@ -132,6 +133,7 @@ export default function BuyDiamonds() {
           Secured by Razorpay · Instant credit top-up · No subscription
         </p>
       </div>
+      <Footer/>
     </div>
   );
 }

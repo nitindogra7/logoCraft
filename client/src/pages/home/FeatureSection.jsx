@@ -12,7 +12,7 @@ export default function FeatureSection() {
 
   return (
     <motion.div
-      className="relative md:px-20 py-25 px-5 bg-[#080A0F] flex flex-col items-center gap-10 overflow-hidden"
+      className="relative md:px-20 py-25 pt-15 px-5 bg-[#080A0F] flex flex-col items-center gap-10 overflow-hidden"
       initial={{ opacity: 0, y: 200 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

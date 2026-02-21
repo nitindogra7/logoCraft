@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { createOrderApi, verifyPaymentApi } from "../api/paymentApi.jsx";
 import { Button } from "./ui/button.jsx";
 
 export default function RazorpayButton({ amount, diamonds }) {
+  const [loading, setLoading] = useState(false);
   const handlePayment = async () => {
     try {
+      setLoading(true);
       const { data } = await createOrderApi(amount);
       const order = data.order;
       const options = {
@@ -28,17 +31,20 @@ export default function RazorpayButton({ amount, diamonds }) {
       rzp.open();
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Button
+      disabled={loading}
       onClick={handlePayment}
       className="w-full rounded-xl bg-sky-500 hover:bg-sky-400 text-white border-0
         shadow-[0_0_24px_rgba(56,189,248,0.25)] hover:shadow-[0_0_36px_rgba(56,189,248,0.45)]
         transition-all duration-300 font-inter text-sm font-semibold py-5"
     >
-      Buy {diamonds} Diamonds
+      {loading ? "loading..." : <p>Buy {diamonds} Diamonds</p>}
     </Button>
   );
 }
