@@ -9,7 +9,7 @@ import { memo } from "react";
 const navItems = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
-  { name: "Pricing", path: "/buy-diamonds" },
+  { name: "Pricing", path: "/pricing" },
   { name: "Features", path: "/features" },
 ];
 

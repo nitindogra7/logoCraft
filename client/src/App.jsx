@@ -3,10 +3,10 @@ import { Suspense, lazy } from "react";
 import ProtectedRoute from "./components/protectedRoutes";
 import { DashboardProvider } from "./contextApis/dashBoardContext.jsx";
 import { AuthProvider } from "./contextApis/authContext";
-import ScrollToTop from "./components/ScrollToTop"; 
-
+import ScrollToTop from "./components/ScrollToTop";
 
 const Home = lazy(() => import("./pages/home/Home"));
+const Diamonds = lazy(() => import("./pages/landing pages/Diamonds.jsx"));
 const History = lazy(() => import("./pages/history/History"));
 const Signup = lazy(() => import("./pages/Signup"));
 const Login = lazy(() => import("./pages/Login"));
@@ -17,9 +17,7 @@ const About = lazy(() => import("./pages/landing pages/About.jsx"));
 
 export default function App() {
   return (
-    <Suspense
-      fallback={<div className="bg-[#080A0F] h-screen w-full" />}
-    >
+    <Suspense fallback={<div className="bg-[#080A0F] h-screen w-full" />}>
       <ScrollToTop />
 
       <Routes>
@@ -39,7 +37,10 @@ export default function App() {
             </AuthProvider>
           }
         />
-
+        <Route path="/pricing" element={
+           <AuthProvider>
+            <Diamonds />
+           </AuthProvider>} />
         <Route
           path="/dashboard"
           element={
