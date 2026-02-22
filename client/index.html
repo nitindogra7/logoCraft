@@ -5,42 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- ===== TITLE & META ===== -->
-  <title>Logocraft - AI Logo Generator | Create Professional Logos in Seconds</title>
-  <meta name="description" content="Create professional, designer-grade logos in seconds with Logocraft's AI logo generator. No design skills required. Generate unlimited logo variations for startups, businesses, and personal brands." />
-  <meta name="author" content="Logocraft" />
-  <meta name="keywords" content="AI logo generator, logo maker, free logo design, create logo online, startup logo, business logo, logo creator, professional logo generator, AI logo design, brand logo" />
+  <!-- ===== PRIMARY SEO ===== -->
+  <title>Logocraft – AI Logo Generator | Create Professional Logos in Seconds</title>
+
+  <meta name="description"
+    content="Create professional, designer-grade logos instantly with Logocraft's AI-powered logo generator. No design skills required. Generate stunning logos for startups, businesses, and personal brands." />
+
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="Logocraft" />
+  <meta name="theme-color" content="#080A0F" />
 
   <!-- ===== CANONICAL ===== -->
-  <link rel="canonical" href="https://app.nitindogra.space/" />
+  <link rel="canonical" href="https://logocraft.nitindogra.space/" />
 
   <!-- ===== FAVICON & PWA ===== -->
   <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="/logo.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/logo.png" sizes="180x180" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="mobile-web-app-capable" content="yes" />
 
   <!-- ===== FONTS ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- ===== OPEN GRAPH ===== -->
+  <!-- ===== OPEN GRAPH (FACEBOOK / LINKEDIN) ===== -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Logocraft - AI Logo Generator" />
-  <meta property="og:description" content="Generate professional logos in seconds with Logocraft's AI-powered logo generator." />
-  <meta property="og:url" content="https://app.nitindogra.space/" />
+  <meta property="og:title" content="Logocraft – AI Logo Generator" />
+  <meta property="og:description"
+    content="Generate professional logos in seconds using AI. Fast, scalable, and perfect for modern brands." />
+  <meta property="og:url" content="https://logocraft.nitindogra.space/" />
   <meta property="og:site_name" content="Logocraft" />
-  <meta property="og:image" content="https://app.nitindogra.space/logo.webp" />
+  <meta property="og:image" content="https://logocraft.nitindogra.space/logo.webp" />
 
   <!-- ===== TWITTER ===== -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Logocraft - AI Logo Generator" />
-  <meta name="twitter:description" content="Generate professional logos instantly using AI." />
-  <meta name="twitter:image" content="https://app.nitindogra.space/logo.webp" />
+  <meta name="twitter:title" content="Logocraft – AI Logo Generator" />
+  <meta name="twitter:description"
+    content="Create professional logos instantly with AI. No design skills required." />
+  <meta name="twitter:image" content="https://logocraft.nitindogra.space/logo.webp" />
+
+  <!-- ===== PERFORMANCE ===== -->
+  <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="//checkout.razorpay.com" />
+
+  <!-- ===== GOOGLE ANALYTICS (GA4) ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ215G2E0B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FJ215G2E0B', {
+      page_path: window.location.pathname,
+    });
+  </script>
+
+  <!-- ===== STRUCTURED DATA (SCHEMA MARKUP) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Logocraft",
+    "url": "https://logocraft.nitindogra.space",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Web",
+    "description": "AI-powered logo generator for creating professional logos instantly.",
+    "image": "https://logocraft.nitindogra.space/logo.webp",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <!-- ===== BASIC STYLES ===== -->
   <style>
@@ -48,8 +85,8 @@
       margin: 0;
       padding: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #1f2937;
+      background: #080A0F;
+      color: #ffffff;
     }
     #root {
       min-height: 100vh;
@@ -63,35 +100,8 @@
   <!-- ===== VITE ENTRY ===== -->
   <script type="module" src="/src/main.jsx"></script>
 
-  <!-- ===== RAZORPAY (ONLY IF USING PAYMENTS) ===== -->
+  <!-- ===== RAZORPAY (PAYMENTS) ===== -->
   <script async src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-  <!-- ===== GOOGLE ANALYTICS ===== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ215G2E0B"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FJ215G2E0B');
-  </script>
-
-  <!-- ===== STRUCTURED DATA ===== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Logocraft",
-    "url": "https://app.nitindogra.space",
-    "applicationCategory": "DesignApplication",
-    "operatingSystem": "Web",
-    "description": "AI-powered logo generator for creating professional logos in seconds.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  }
-  </script>
 
 </body>
 </html>
