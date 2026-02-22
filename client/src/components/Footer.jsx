@@ -3,19 +3,18 @@ import logo from "../assets/logo.png";
 
 const footerLinks = {
   Product: [
-    { name: "Features", path: "/#features" },
-    { name: "Pricing", path: "/#pricing" },
+    { name: "Features", path: "/features" },
+    { name: "Pricing", path: "/buy-diamonds" },
     { name: "Dashboard", path: "/dashboard" },
   ],
   Company: [
-    { name: "About", path: "/#about" },
-    { name: "Blog", path: "/blog" },
-    { name: "Careers", path: "/careers" },
+    { name: "About", path: "/about" },
+    { name: "Blog", path: "/#blog" },
+    { name: "Careers", path: "/#careers" },
   ],
   Legal: [
-    { name: "Privacy Policy", path: "/privacy" },
-    { name: "Terms of Service", path: "/terms" },
-    { name: "Cookie Policy", path: "/cookies" },
+    { name: "Privacy Policy", path: "/#privacy" },
+    { name: "Terms of Service", path: "/#cookies" },
   ],
 };
 

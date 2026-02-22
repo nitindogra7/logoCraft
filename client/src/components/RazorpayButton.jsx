@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createOrderApi, verifyPaymentApi } from "../api/paymentApi.jsx";
 import { Button } from "./ui/button.jsx";
+import { AuthContext } from "@/contextApis/authContext.jsx";
 
 export default function RazorpayButton({ amount, diamonds }) {
   const [loading, setLoading] = useState(false);
+  const {isAuth , setIsAuth } = useContext(AuthContext)
   const handlePayment = async () => {
+
     try {
+      if(!isAuth) {
+        window.location.href = "/login"
+        return;
+      }
       setLoading(true);
       const { data } = await createOrderApi(amount);
       const order = data.order;

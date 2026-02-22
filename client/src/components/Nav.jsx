@@ -8,9 +8,9 @@ import { memo } from "react";
 
 const navItems = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/#about" },
-  { name: "Pricing", path: "/#pricing" },
-  { name: "Features", path: "/#features" },
+  { name: "About", path: "/about" },
+  { name: "Pricing", path: "/buy-diamonds" },
+  { name: "Features", path: "/features" },
 ];
 
 function Nav() {
