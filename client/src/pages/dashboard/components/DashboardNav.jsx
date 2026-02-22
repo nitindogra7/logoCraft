@@ -12,6 +12,7 @@ function DashboardNav({ user }) {
     { name: "Home", to: "/" },
     { name: "History", to: "/history" },
     { name: "Dashboard", to: "/dashboard" },
+    { name: "Buy Diamonds", to: "/buy-diamonds" },
   ];
 
   return (
