@@ -1,19 +1,28 @@
 import DashboardNav from "../dashboard/components/DashboardNav";
 import { useCallback, useContext } from "react";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 import { DashBoardContext } from "@/contextApis/dashBoardContext";
 
 export default function History() {
   const { response, loading, user } = useContext(DashBoardContext);
   const images = response?.userData?.images || [];
 
-  const downloadImage = useCallback((src, index) => {
-    const link = document.createElement("a");
-    link.href = src;
-    link.download = `logo-${index + 1}.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const downloadImage = useCallback(async (url, index) => {
+    try {
+      const response = await axios.get(url, {
+        responseType: "blob",
+      });
+      const blobUrl = window.URL.createObjectURL(response.data);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `logo-${index + 1}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
 
   if (loading) {
@@ -42,8 +51,6 @@ export default function History() {
 
   return (
     <div className="min-h-screen bg-[#080A0F] relative overflow-hidden">
-
-      {/* Background atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute inset-0 opacity-[0.025]"
@@ -59,8 +66,6 @@ export default function History() {
       <DashboardNav response={response} user={user} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-8 pt-28">
-
-        {/* Header */}
         <div className="mb-8 flex items-end justify-between">
           <div>
             <p className="text-xs text-neutral-600 font-inter uppercase tracking-widest mb-1">
@@ -77,13 +82,14 @@ export default function History() {
           )}
         </div>
 
-        {/* Empty state */}
         {images.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-96 gap-4">
             <div className="w-16 h-16 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center">
               <span className="text-2xl text-neutral-600">✦</span>
             </div>
-            <p className="text-neutral-600 font-inter text-sm">No logos generated yet.</p>
+            <p className="text-neutral-600 font-inter text-sm">
+              No logos generated yet.
+            </p>
             <a
               href="/dashboard"
               className="text-xs text-sky-400 hover:text-sky-300 font-inter border border-sky-500/20 bg-sky-500/10 px-4 py-2 rounded-full transition-colors"
