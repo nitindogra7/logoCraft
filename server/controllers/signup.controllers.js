@@ -26,10 +26,9 @@ export default async function signup(req, res) {
 
     if (userExist)
       return res.status(400).json({ message: "user already exists" });
-
-    const user = await User.create({ fullName, email, password });
     const accessToken = generateAccessToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
+    const user = await User.create({ fullName, email, password, refreshToken });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
@@ -38,9 +37,6 @@ export default async function signup(req, res) {
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-
-    user.refreshToken = refreshToken;
-    await user.save();
 
     res.status(201).json({
       message: "user created",

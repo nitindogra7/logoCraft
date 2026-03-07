@@ -5,30 +5,23 @@ import jwt from "jsonwebtoken";
 export const refreshTokenController = async (req, res) => {
   try {
     const token = req.cookies.refreshToken;
+
     if (!token) return res.status(401).json({ message: "No refresh token" });
 
     const decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
 
-    const user = await User.findById(decoded.userId);
+    const user = await User.findOne({
+      _id: decoded.userId,
+      refreshToken: token,
+    });
+
     if (!user)
       return res.status(401).json({ message: "Invalid refresh token" });
-
-    if (user.refreshToken !== token) {
-      return res.status(401).json({ message: "Refresh token mismatch" });
-    }
 
     const newAccessToken = generateAccessToken(user._id);
     const newRefreshToken = generateRefreshToken(user._id);
 
-    user.refreshToken = newRefreshToken;
-    await user.save();
-
-    res.clearCookie("refreshToken", {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      path: "/",
-    });
+    await User.updateOne({ _id: user._id }, { refreshToken: newRefreshToken });
 
     res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,
@@ -44,6 +37,7 @@ export const refreshTokenController = async (req, res) => {
     });
   } catch (error) {
     console.error("Refresh token error:", error);
+
     return res.status(401).json({
       message: "Refresh token expired or invalid",
     });

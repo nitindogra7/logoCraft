@@ -47,8 +47,12 @@ export const verifyPayment = async (req, res) => {
     if (![200, 450, 1000].includes(diamondsNum)) {
       return res.status(400).json({ message: "diamonds mis-matched" });
     }
-    user.credits += diamonds;
-    await user.save();
+    await User.updateOne(
+      { _id: req.user.id },
+      {
+        $inc: { credits: diamondsNum },
+      },
+    );
 
     res.status(200).json({
       success: true,

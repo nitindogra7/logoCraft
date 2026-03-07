@@ -12,15 +12,16 @@ export const generateLogo = async (req, res) => {
         .json({ message: "not enough credits please top Up!" });
 
     const imageBuffer = await generateLogoImage(prompt); //send prompt to gemini imagenmodel
-    user.credits -= 25; // deduct credits from users account
     const imageBase64 = imageBuffer.toString("base64");
     const resultImg = await uploadCloudFile(imageBase64);
-    user.images.push({ image: resultImg });
-    await user.save();
+    await User.updateOne(
+      { _id: req.user.id },
+      { $inc: { credits: -25 }, $push: { images: { image: resultImg } } },
+    );
 
     res.status(200).json({
       image: resultImg,
-      credits: user.credits,
+      credits: user.credits - 25,
       images: resultImg,
     });
   } catch (err) {

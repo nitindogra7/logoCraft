@@ -28,6 +28,7 @@ Api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return Api(originalRequest);
       } catch {
+        window.location.href = "/login";
         return Promise.reject(error);
       }
     }
