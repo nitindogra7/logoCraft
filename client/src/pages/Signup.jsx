@@ -5,12 +5,12 @@ import { useState, useContext } from "react";
 import { AuthContext } from "@/contextApis/authContext";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { useToast } from "@/contextApis/toastContext"; 
+import { useToast } from "@/contextApis/toastContext";
 
 export default function Signup() {
   const navigate = useNavigate();
   const { signup, loading, setLoading } = useContext(AuthContext);
-  const { addToast } = useToast(); 
+  const { addToast } = useToast();
 
   const [input, setInput] = useState({
     fullName: "",
@@ -24,19 +24,15 @@ export default function Signup() {
 
     try {
       await signup(input);
-
       addToast("Account created successfully!", "success");
-
       setTimeout(() => {
         navigate("/dashboard");
       }, 800);
     } catch (error) {
       console.error(error);
-
       addToast(
-        error?.response?.data?.message ||
-          "Signup failed. Please try again.",
-        "error"
+        error?.response?.data?.message || "Signup failed. Please try again.",
+        "error",
       );
     } finally {
       setLoading(false);

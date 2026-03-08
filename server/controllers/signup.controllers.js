@@ -26,9 +26,10 @@ export default async function signup(req, res) {
 
     if (userExist)
       return res.status(400).json({ message: "user already exists" });
+    const user = await User.create({ fullName, email, password });
     const accessToken = generateAccessToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
-    const user = await User.create({ fullName, email, password, refreshToken });
+    await User.updateOne({ refreshToken });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
