@@ -3,7 +3,7 @@ import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 
 export default async function signup(req, res) {
   try {
-    const { fullName, email, password } = req.body || {};
+    const { fullName, email, password } = req.body;
     if (!fullName || !email || !password)
       return res.status(400).json({ message: "All fields are required" });
 
@@ -29,7 +29,7 @@ export default async function signup(req, res) {
     const user = await User.create({ fullName, email, password });
     const accessToken = generateAccessToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
-    await User.updateOne({ refreshToken });
+    await User.updateOne({_id : user._id },{ refreshToken });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,

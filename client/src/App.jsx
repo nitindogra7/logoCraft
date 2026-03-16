@@ -30,17 +30,13 @@ export default function App() {
         <Route
           path="/buy-diamonds"
           element={
-            <AuthProvider>
-              <DashboardProvider>
-                <BuyDiamonds />
-              </DashboardProvider>
-            </AuthProvider>
+            <DashboardProvider>
+              <BuyDiamonds />
+            </DashboardProvider>
           }
         />
-        <Route path="/pricing" element={
-           <AuthProvider>
-            <Diamonds />
-           </AuthProvider>} />
+        <Route path="/pricing" element={<Diamonds />} />
+
         <Route
           path="/dashboard"
           element={
