@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes.js";
 import dashboardRoute from "./routes/dashboardRoute.js";
 import paymentRoute from "./routes/payment.route.js";
 import connectDb from "./config/db.js";
+import { connectRedis } from "./config/redis.js";
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ app.use(
 
 // Connect to DB
 connectDb();
+connectRedis()
+
 
 // Routes
 app.get("/", (req, res) => {
