@@ -10,7 +10,9 @@ export default async function dashboard(req, res) {
 
     if (cachedData) {
       console.log("Cache HIT");
-      return res.status(200).json(JSON.parse(cachedData));
+      // Upstash auto-deserializes JSON, so no JSON.parse needed
+      const userData = typeof cachedData === "string" ? JSON.parse(cachedData) : cachedData;
+      return res.status(200).json({ userData, message: "welcome to dashboard" });
     }
 
     console.log("Cache MISS");
@@ -19,14 +21,13 @@ export default async function dashboard(req, res) {
       .select("-password")
       .lean();
 
-    const response = {
-      userData
-    };
+    // Upstash handles serialization, but JSON.stringify is still safe to use
+    await client.set(cacheKey, JSON.stringify(userData), { ex: 86400 });
 
-    await client.setEx(cacheKey ,86400 , JSON.stringify(response));
+    res.status(200).json({ userData, message: "welcome to dashboard" });
 
-    res.status(200).json({response , message : "welcome to dashboard"});
   } catch (error) {
+    console.log(error);
     res.status(400).json({ message: "user not found" });
   }
 }
