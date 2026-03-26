@@ -10,6 +10,7 @@ export const signupApi = async (userData) => {
     return response.data;
   } catch (error) {
     console.log(error.response?.data || error.message);
+    console.log(error)
     throw error;
   }
 };

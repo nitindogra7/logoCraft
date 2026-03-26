@@ -7,6 +7,7 @@ import dashboardRoute from "./routes/dashboardRoute.js";
 import paymentRoute from "./routes/payment.route.js";
 import connectDb from "./config/db.js";
 import client from "./config/redis.js";
+import { connectRedis } from "./config/redis.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(
 
 // Connect to DB
 connectDb();
+connectRedis();
 
 
 // Routes

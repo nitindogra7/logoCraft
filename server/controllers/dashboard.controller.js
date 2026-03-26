@@ -10,7 +10,7 @@ export default async function dashboard(req, res) {
 
     if (cachedData) {
       console.log("Cache HIT");
-      return res.status(200).json(cachedData);
+      return res.status(200).json(JSON.parse(cachedData));
     }
 
     console.log("Cache MISS");
